@@ -18,7 +18,8 @@ export const repoRootPath = path.join(
  */
 export const cloneLibraryRepo = async (
   localSavePath: string,
-  repoUrl = "https://github.com/processing/p5.js.git",
+  // repoUrl = "https://github.com/processing/p5.js.git",
+  repoUrl = "https://github.com/davepagurek/p5.js.git"
 ) => {
   const git = simpleGit();
 
@@ -41,6 +42,8 @@ export const cloneLibraryRepo = async (
         "--depth",
         "1",
         "--filter=blob:none",
+        "-b",
+        "shader-hooks",
       ]);
       console.log("Repository cloned successfully.");
       await fixAbsolutePathInPreprocessor(localSavePath);
