@@ -85,7 +85,7 @@ export const ReferenceDirectoryWithFilter = ({
         {entries.map((entry) => (
           <div class="col-span-3 w-full overflow-hidden" key={entry.id}>
             <a
-              href={`/reference/${entry.data.path}/`}
+              href={`/p5.js-website/reference/${entry.data.path}/`}
               class="group hover:no-underline"
               aria-label={entry.data.title}
               aria-describedby={`${entry.data.title}-description`}
@@ -124,7 +124,7 @@ export const ReferenceDirectoryWithFilter = ({
         {subcat.name.includes("p5.") ? (
           <a
             id={subcat.name}
-            href={`/reference/${category.name === "p5.sound" ? "p5.sound" : "p5"}/${subcat.name}`}
+            href={`/p5.js-website/reference/${category.name === "p5.sound" ? "p5.sound" : "p5"}/${subcat.name}`}
           >
             <h3 className="m-0 py-gutter-md">{subcat.name}</h3>
           </a>
