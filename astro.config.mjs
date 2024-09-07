@@ -17,6 +17,7 @@ if (shouldSkipCompress) {
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://davepagurek.github.io/p5.js-website',
   integrations: [
     preact({
       compat: true,
