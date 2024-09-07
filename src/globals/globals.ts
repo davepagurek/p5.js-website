@@ -15,7 +15,7 @@ export const eventsPerPage = 12 as const;
 
 // export const cdnLibraryUrl =
   // `https://cdnjs.cloudflare.com/ajax/libs/p5.js/${p5Version}/p5.min.js` as const;
-export const cdnLibraryUrl = `/p5.min.js` as const;
+export const cdnLibraryUrl = `/p5.js-website/p5.min.js` as const;
 export const fullDownloadUrl =
   `https://github.com/processing/p5.js/releases/download/v${p5Version}/p5.zip` as const;
 export const libraryDownloadUrl =
