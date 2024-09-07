@@ -6,11 +6,11 @@ file: src/math/noise.js
 description: >
   <p>返回可以调整以呈现自然感觉的随机数。</p>
 
-  <p>通过 <a href="/reference/p5/random">random()</a> 和 <a href="/reference/p5/randomGaussian">randomGaussian()</a> 返回的值，在函数调用之间可以有很大的变化。相比之下，<code>noise()</code> 返回的值可以被制成“平滑”的。对 <code>noise()</code> 的相似输入调用将产生相似的输出。<code>noise()</code> 用于创建纹理、运动、形状、地形等。Ken Perlin 在 1980 年代为最初的 <em>Tron</em> 电影制作动画时发明了 <code>noise()</code>。</p>
+  <p>通过 <a href="/p5.js-website/reference/p5/random">random()</a> 和 <a href="/p5.js-website/reference/p5/randomGaussian">randomGaussian()</a> 返回的值，在函数调用之间可以有很大的变化。相比之下，<code>noise()</code> 返回的值可以被制成“平滑”的。对 <code>noise()</code> 的相似输入调用将产生相似的输出。<code>noise()</code> 用于创建纹理、运动、形状、地形等。Ken Perlin 在 1980 年代为最初的 <em>Tron</em> 电影制作动画时发明了 <code>noise()</code>。</p>
 
-  <p>><code>noise()</code> 总是返回 0 到 1 之间的值。在绘图运行时，它为给定的输入返回相同的值。<code>noise()</code> 每次绘图运行时产生不同的结果。<a href="/reference/p5/noiseSeed">noiseSeed()</a> 函数可以用来每次绘图运行时生成相同的 Perlin 噪声值序列。</p>
+  <p>><code>noise()</code> 总是返回 0 到 1 之间的值。在绘图运行时，它为给定的输入返回相同的值。<code>noise()</code> 每次绘图运行时产生不同的结果。<a href="/p5.js-website/reference/p5/noiseSeed">noiseSeed()</a> 函数可以用来每次绘图运行时生成相同的 Perlin 噪声值序列。</p>
 
-  <p>可以通过两种方式调整噪声的特性。第一种方式是缩放输入。<code>noise()</code> 将输入解释为坐标。当输入坐标更接近时，噪声值的序列会更平滑。第二种方式是使用 <a href="/reference/p5/noiseDetail">noiseDetail()</a> 函数。</p>
+  <p>可以通过两种方式调整噪声的特性。第一种方式是缩放输入。<code>noise()</code> 将输入解释为坐标。当输入坐标更接近时，噪声值的序列会更平滑。第二种方式是使用 <a href="/p5.js-website/reference/p5/noiseDetail">noiseDetail()</a> 函数。</p>
 
   <p>带有一个参数的 <code>noise()</code> 版本在一个维度上计算噪声值。这个维度可以被认为是空间，如 <code>noise(x)</code>，或时间，如<code>noise(t)</code>。</p>
 

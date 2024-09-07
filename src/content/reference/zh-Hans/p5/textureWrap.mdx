@@ -6,9 +6,9 @@ file: src/webgl/material.js
 description: >
   <p>当形状的 uv 坐标超出纹理时，改变纹理的行为方式。</p>
 
-  <p>为了使 <a href="/reference/p5/texture">texture()</a> 正常工作，一个形状需要一种将其表面上的点映射到图像中的像素的方法。内置的形状，如 <a href="/reference/p5/rect">rect()</a> 和 <a href="/reference/p5/box">box()</a>，已经根据它们的顶点具有了这些纹理映射。使用 <a href="/reference/p5/vertex">vertex()</a> 创建的自定义形状需要将纹理映射传递为 uv 坐标。</p>
+  <p>为了使 <a href="/p5.js-website/reference/p5/texture">texture()</a> 正常工作，一个形状需要一种将其表面上的点映射到图像中的像素的方法。内置的形状，如 <a href="/p5.js-website/reference/p5/rect">rect()</a> 和 <a href="/p5.js-website/reference/p5/box">box()</a>，已经根据它们的顶点具有了这些纹理映射。使用 <a href="/p5.js-website/reference/p5/vertex">vertex()</a> 创建的自定义形状需要将纹理映射传递为 uv 坐标。</p>
 
-  <p>每次调用 <a href="/reference/p5/vertex">vertex()</a> 都必须包括 5 个参数，如 <code>vertex(x, y, z, u, v)</code>，以将坐标 <code>(x, y, z)</code> 处的顶点映射到图像中坐标 <code>(u, v)</code> 的像素。例如，矩形图像的角落默认映射到矩形的角落：</p>
+  <p>每次调用 <a href="/p5.js-website/reference/p5/vertex">vertex()</a> 都必须包括 5 个参数，如 <code>vertex(x, y, z, u, v)</code>，以将坐标 <code>(x, y, z)</code> 处的顶点映射到图像中坐标 <code>(u, v)</code> 的像素。例如，矩形图像的角落默认映射到矩形的角落：</p>
 
   <code>
 

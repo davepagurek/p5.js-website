@@ -10,7 +10,7 @@ description: >
 
   a <em>framebuffer</em>. They're similar to
 
-  <a href="/reference/p5/p5.Graphics">p5.Graphics</a> objects but can run much
+  <a href="/p5.js-website/reference/p5/p5.Graphics">p5.Graphics</a> objects but can run much
   faster.
 
   Performance is improved because the framebuffer shares the same WebGL
@@ -24,23 +24,23 @@ description: >
 
   between calls to
 
-  <a href="/reference/p5.Framebuffer/begin">myBuffer.begin()</a> and
+  <a href="/p5.js-website/reference/p5.Framebuffer/begin">myBuffer.begin()</a> and
 
-  <a href="/reference/p5.Framebuffer/end">myBuffer.end()</a>. The resulting
+  <a href="/p5.js-website/reference/p5.Framebuffer/end">myBuffer.end()</a>. The resulting
   image
 
   can be applied as a texture by passing the <code>p5.Framebuffer</code> object
   to the
 
-  <a href="/reference/p5/texture">texture()</a> function, as in
+  <a href="/p5.js-website/reference/p5/texture">texture()</a> function, as in
   <code>texture(myBuffer)</code>.
 
   It can also be displayed on the main canvas by passing it to the
 
-  <a href="/reference/p5/image">image()</a> function, as in
+  <a href="/p5.js-website/reference/p5/image">image()</a> function, as in
   <code>image(myBuffer, 0, 0)</code>.</p>
 
-  <p>Note: <a href="/reference/p5/createFramebuffer">createFramebuffer()</a> is
+  <p>Note: <a href="/p5.js-website/reference/p5/createFramebuffer">createFramebuffer()</a> is
   the
 
   recommended way to create an instance of this class.</p>
@@ -126,7 +126,7 @@ methods:
     description: >
       <p>Creates a new
 
-      <a href="/reference/p5/p5.Camera">p5.Camera</a> object to use with the
+      <a href="/p5.js-website/reference/p5/p5.Camera">p5.Camera</a> object to use with the
       framebuffer.</p>
 
       <p>The new camera is initialized with a default position <code>(0, 0,
@@ -134,14 +134,14 @@ methods:
 
       default perspective projection. Its properties can be controlled with
 
-      <a href="/reference/p5/p5.Camera">p5.Camera</a> methods such as
+      <a href="/p5.js-website/reference/p5/p5.Camera">p5.Camera</a> methods such as
       <code>myCamera.lookAt(0, 0, 0)</code>.</p>
 
       <p>Framebuffer cameras should be created between calls to
 
-      <a href="/reference/p5.Framebuffer/begin">myBuffer.begin()</a> and
+      <a href="/p5.js-website/reference/p5.Framebuffer/begin">myBuffer.begin()</a> and
 
-      <a href="/reference/p5.Framebuffer/end">myBuffer.end()</a> like so:</p>
+      <a href="/p5.js-website/reference/p5.Framebuffer/end">myBuffer.end()</a> like so:</p>
 
       <pre><code class="language-js">let myCamera;
 
@@ -158,11 +158,11 @@ methods:
 
       </code></pre>
 
-      <p>Calling <a href="/reference/p5/setCamera">setCamera()</a> updates the
+      <p>Calling <a href="/p5.js-website/reference/p5/setCamera">setCamera()</a> updates the
 
       framebuffer's projection using the camera.
 
-      <a href="/reference/p5/resetMatrix">resetMatrix()</a> must also be called
+      <a href="/p5.js-website/reference/p5/resetMatrix">resetMatrix()</a> must also be called
       for the
 
       view to change properly:</p>
@@ -223,14 +223,14 @@ methods:
       <p>Begins drawing shapes to the framebuffer.</p>
 
       <p><code>myBuffer.begin()</code> and <a
-      href="/reference/p5.Framebuffer/end">myBuffer.end()</a>
+      href="/p5.js-website/reference/p5.Framebuffer/end">myBuffer.end()</a>
 
       allow shapes to be drawn to the framebuffer. <code>myBuffer.begin()</code>
       begins
 
       drawing to the framebuffer and
 
-      <a href="/reference/p5.Framebuffer/end">myBuffer.end()</a> stops drawing
+      <a href="/p5.js-website/reference/p5.Framebuffer/end">myBuffer.end()</a> stops drawing
       to the
 
       framebuffer. Changes won't be visible until the framebuffer is displayed
@@ -241,12 +241,12 @@ methods:
     description: >
       <p>Stops drawing shapes to the framebuffer.</p>
 
-      <p><a href="/reference/p5.Framebuffer/begin">myBuffer.begin()</a> and
+      <p><a href="/p5.js-website/reference/p5.Framebuffer/begin">myBuffer.begin()</a> and
       <code>myBuffer.end()</code>
 
       allow shapes to be drawn to the framebuffer.
 
-      <a href="/reference/p5.Framebuffer/begin">myBuffer.begin()</a> begins
+      <a href="/p5.js-website/reference/p5.Framebuffer/begin">myBuffer.begin()</a> begins
       drawing to
 
       the framebuffer and <code>myBuffer.end()</code> stops drawing to the
@@ -285,12 +285,12 @@ methods:
     description: >
       <p>Loads the current value of each pixel in the framebuffer into its
 
-      <a href="/reference/p5.Framebuffer/pixels">pixels</a> array.</p>
+      <a href="/p5.js-website/reference/p5.Framebuffer/pixels">pixels</a> array.</p>
 
       <p><code>myBuffer.loadPixels()</code> must be called before reading from
       or writing to
 
-      <a href="/reference/p5.Framebuffer/pixels">myBuffer.pixels</a>.</p>
+      <a href="/p5.js-website/reference/p5.Framebuffer/pixels">myBuffer.pixels</a>.</p>
     path: p5.Framebuffer/loadPixels
   get:
     description: >
@@ -298,9 +298,9 @@ methods:
 
       <p><code>myBuffer.get()</code> is easy to use but it's not as fast as
 
-      <a href="/reference/p5.Framebuffer/pixels">myBuffer.pixels</a>. Use
+      <a href="/p5.js-website/reference/p5.Framebuffer/pixels">myBuffer.pixels</a>. Use
 
-      <a href="/reference/p5.Framebuffer/pixels">myBuffer.pixels</a> to read
+      <a href="/p5.js-website/reference/p5.Framebuffer/pixels">myBuffer.pixels</a> to read
       many pixel
 
       values.</p>
@@ -308,7 +308,7 @@ methods:
       <p>The version of <code>myBuffer.get()</code> with no parameters returns
       the entire
 
-      framebuffer as a a <a href="/reference/p5/p5.Image">p5.Image</a>
+      framebuffer as a a <a href="/p5.js-website/reference/p5/p5.Image">p5.Image</a>
       object.</p>
 
       <p>The version of <code>myBuffer.get()</code> with two parameters
@@ -324,7 +324,7 @@ methods:
 
       coordinates and dimensions. It returns a subsection of the framebuffer as
 
-      a <a href="/reference/p5/p5.Image">p5.Image</a> object. The first two
+      a <a href="/p5.js-website/reference/p5/p5.Image">p5.Image</a> object. The first two
       parameters are
 
       the coordinates for the upper-left corner of the subsection. The last two
@@ -335,18 +335,18 @@ methods:
     description: >
       <p>Updates the framebuffer with the RGBA values in the
 
-      <a href="/reference/p5.Framebuffer/pixels">pixels</a> array.</p>
+      <a href="/p5.js-website/reference/p5.Framebuffer/pixels">pixels</a> array.</p>
 
       <p><code>myBuffer.updatePixels()</code> only needs to be called after
       changing values
 
-      in the <a href="/reference/p5.Framebuffer/pixels">myBuffer.pixels</a>
+      in the <a href="/p5.js-website/reference/p5.Framebuffer/pixels">myBuffer.pixels</a>
       array. Such
 
       changes can be made directly after calling
 
       <a
-      href="/reference/p5.Framebuffer/loadPixels">myBuffer.loadPixels()</a>.</p>
+      href="/p5.js-website/reference/p5.Framebuffer/loadPixels">myBuffer.loadPixels()</a>.</p>
     path: p5.Framebuffer/updatePixels
 properties:
   pixels:
@@ -354,13 +354,13 @@ properties:
       <p>An array containing the color of each pixel in the framebuffer.</p>
 
       <p><a
-      href="/reference/p5.Framebuffer/loadPixels">myBuffer.loadPixels()</a> must
+      href="/p5.js-website/reference/p5.Framebuffer/loadPixels">myBuffer.loadPixels()</a> must
       be
 
       called before accessing the <code>myBuffer.pixels</code> array.
 
       <a
-      href="/reference/p5.Framebuffer/updatePixels">myBuffer.updatePixels()</a>
+      href="/p5.js-website/reference/p5.Framebuffer/updatePixels">myBuffer.updatePixels()</a>
 
       must be called after any changes are made.</p>
 
@@ -368,7 +368,7 @@ properties:
 
       framebuffer directly. Consider using a
 
-      <a href="/reference/p5/p5.Shader">p5.Shader</a> object instead of looping
+      <a href="/p5.js-website/reference/p5/p5.Shader">p5.Shader</a> object instead of looping
       over
 
       <code>myBuffer.pixels</code>.</p>

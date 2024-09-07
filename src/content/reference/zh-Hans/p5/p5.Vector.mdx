@@ -11,7 +11,7 @@ description: |2-
 
   <p><code>p5.Vector</code>对象经常用于编码运动，因为它们简化了数学计算。例如，移动的球有位置和速度。位置描述了球在空间中的位置。球的位置向量从原点延伸到球的中心。速度描述了球的速度和运动方向。如果球直直地向上移动，其速度向量也会指向上方。将球的速度向量添加到其位置向量中会移动球，就像<code>pos.add(vel)</code>一样。向量数学依赖于<code>p5.Vector</code>类中的方法。</p>
 
-  <p>注意：<a href="/reference/p5/createVector">createVector()</a>是创建此类实例的推荐方法。</p>
+  <p>注意：<a href="/p5.js-website/reference/p5/createVector">createVector()</a>是创建此类实例的推荐方法。</p>
 line: '11'
 isConstructor: 'true'
 params:
@@ -107,27 +107,27 @@ methods:
 
       <p>设置向量的<code>x</code>、<code>y</code>和<code>z</code>分量。</p>
 
-      <p><code>set()</code>可以使用单独的数字，例如<code>v.set(1, 2, 3)</code>，一个<a href="/reference/p5/p5.Vector">p5.Vector</a>对象，例如<code>v.set(v2)</code>，或者一个数字数组，例如<code>v.set([1, 2, 3])</code>。</p>
+      <p><code>set()</code>可以使用单独的数字，例如<code>v.set(1, 2, 3)</code>，一个<a href="/p5.js-website/reference/p5/p5.Vector">p5.Vector</a>对象，例如<code>v.set(v2)</code>，或者一个数字数组，例如<code>v.set([1, 2, 3])</code>。</p>
 
       <p>如果未为分量提供值，则会将其设置为0。例如，<code>v.set(4, 5)</code>将<code>v.x</code>设置为4，<code>v.y</code>设置为5，<code>v.z</code>设置为0。调用<code>set()</code>时不带参数，例如<code>v.set()</code>，会将向量的所有分量都设置为0。</p>
     path: p5.Vector/set
   copy:
     description: |2-
 
-      <p>返回<a href="/reference/p5/p5.Vector">p5.Vector</a>对象的副本。</p>
+      <p>返回<a href="/p5.js-website/reference/p5/p5.Vector">p5.Vector</a>对象的副本。</p>
     path: p5.Vector/copy
   add:
     description: |2-
 
       <p>将向量的 <code>x</code>、<code>y</code> 和 <code>z</code> 分量相加。</p>
 
-      <p><code>add()</code> 可以使用单独的数字，例如 <code>v.add(1, 2, 3)</code>，另一个 <a href="/reference/p5/p5.Vector">p5.Vector</a> 对象，例如 <code>v.add(v2)</code>，或者数字数组，例如 <code>v.add([1, 2, 3])</code>。</p>
+      <p><code>add()</code> 可以使用单独的数字，例如 <code>v.add(1, 2, 3)</code>，另一个 <a href="/p5.js-website/reference/p5/p5.Vector">p5.Vector</a> 对象，例如 <code>v.add(v2)</code>，或者数字数组，例如 <code>v.add([1, 2, 3])</code>。</p>
 
       <p>如果没有为分量提供值，它将保持不变。例如，<code>v.add(4, 5)</code> 将 4 加到 <code>v.x</code>，5 加到 <code>v.y</code>，0 加到 <code>v.z</code>。</p>
 
       <p>调用 <code>add()</code> 而不带参数，例如 <code>v.add()</code>，不会产生任何效果。</p>
 
-      <p>静态版本的 <code>add()</code>，例如 <code>p5.Vector.add(v2, v1)</code>，返回一个新的 <a href="/reference/p5/p5.Vector">p5.Vector</a> 对象，并不更改原始对象。</p>
+      <p>静态版本的 <code>add()</code>，例如 <code>p5.Vector.add(v2, v1)</code>，返回一个新的 <a href="/p5.js-website/reference/p5/p5.Vector">p5.Vector</a> 对象，并不更改原始对象。</p>
     path: p5.Vector/add
   rem:
     description: <p>对向量的 <code>x</code>、 <code>y</code>、 <code>z</code> 分量取模（余数）。</p> <p><code>rem()</code> 可以接收单独的数字，如：<code>v.rem(1, 2, 3)</code>；可以接收另一个 <a href="#/p5.Vector">p5.Vector</a> 对象，如：<code>v.rem(v2)</code>；也可以接收数字组，如：<code>v.rem([1, 2, 3])</code>。</p> <p>如果只传一个参数，如：<code>v.rem(2)</code>，那么所有分量都将设置为它们对 2 取模的值；如果传两个参数，如：<code>v.rem(2, 3)</code>，那么 <code>v.z</code> 不会变；调用不带参数的 <code>rem()</code>，如：<code>v.rem()</code>，不会发生任何变化。</p> <p><code>rem()</code> 的静态版本，如：<code>p5.Vector.rem(v2, v1)</code>，返回一个新的 <a href="#/p5.Vector">p5.Vector</a> 对象，不改变原始对象。</p>
@@ -201,12 +201,12 @@ methods:
 
       <p>如果这两个向量的所有分量都相同，那么 <code>equals()</code> 返回 <code>true</code>，否则返回 <code>false</code>。</p>
 
-      <p>如果 <code>equals()</code> 只带有一个参数，那么这个参数是另一个 <a href="/reference/p5/p5.Vector">p5.Vector</a> 对象。</p>
+      <p>如果 <code>equals()</code> 只带有一个参数，那么这个参数是另一个 <a href="/p5.js-website/reference/p5/p5.Vector">p5.Vector</a> 对象。</p>
 
       <p>如果 <code>equals()</code> 带有多个参数，那么它们则是另一个向量的分量。缺失的参数将被赋值为 0。</p>
 
       <p><code>equals()</code> 的静态版本，如: , <code>p5.Vector.equals(v0, v1)</code>，其中的两个参数都是 <a
-      href="/reference/p5/p5.Vector">p5.Vector</a> 对象。</p>
+      href="/p5.js-website/reference/p5/p5.Vector">p5.Vector</a> 对象。</p>
     path: p5.Vector/equals
   fromAngle:
     description: |2-

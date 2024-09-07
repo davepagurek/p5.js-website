@@ -6,9 +6,9 @@ file: src/webgl/material.js
 description: >
   <p>Cambia la forma en que las texturas se comportan cuando las coordenadas uv de una forma van más allá de la textura.</p>
 
-  <p>Para que <a href="/reference/p5/texture">texture()</a> funcione, una forma necesita una forma de mapear los puntos de su superficie a los píxeles de una imagen. Las formas incorporadas como <a href="/reference/p5/rect">rect()</a> y <a href="/reference/p5/box">box()</a> ya tienen estos mapeos de textura basados en sus vértices. Las formas personalizadas creadas con <a href="/reference/p5/vertex">vertex()</a> requieren que se pasen los mapeos de textura como coordenadas uv.</p>
+  <p>Para que <a href="/p5.js-website/reference/p5/texture">texture()</a> funcione, una forma necesita una forma de mapear los puntos de su superficie a los píxeles de una imagen. Las formas incorporadas como <a href="/p5.js-website/reference/p5/rect">rect()</a> y <a href="/p5.js-website/reference/p5/box">box()</a> ya tienen estos mapeos de textura basados en sus vértices. Las formas personalizadas creadas con <a href="/p5.js-website/reference/p5/vertex">vertex()</a> requieren que se pasen los mapeos de textura como coordenadas uv.</p>
 
-  <p>Cada llamada a <a href="/reference/p5/vertex">vertex()</a> debe incluir 5 argumentos, como en <code>vertex(x, y, z, u, v)</code>, para mapear el vértice en las coordenadas <code>(x, y, z)</code> al píxel en las coordenadas <code>(u, v)</code> dentro de una imagen. Por ejemplo, las esquinas de una imagen rectangular se mapean a las esquinas de un rectángulo por defecto:</p>
+  <p>Cada llamada a <a href="/p5.js-website/reference/p5/vertex">vertex()</a> debe incluir 5 argumentos, como en <code>vertex(x, y, z, u, v)</code>, para mapear el vértice en las coordenadas <code>(x, y, z)</code> al píxel en las coordenadas <code>(u, v)</code> dentro de una imagen. Por ejemplo, las esquinas de una imagen rectangular se mapean a las esquinas de un rectángulo por defecto:</p>
   <code>
 
   // Apply the image as a texture.

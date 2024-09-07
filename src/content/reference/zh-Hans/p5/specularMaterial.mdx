@@ -8,15 +8,15 @@ description: >
 
   <p><code>specularMaterial()</code> 颜色设置形状的光泽涂层将反射的光颜色的组件。例如，调用 <code>specularMaterial(255, 255, 0)</code> 将使形状反射红色和绿色光，但不反射蓝色光。</p>
 
-  <p>与 <a href="/reference/p5/ambientMaterial">ambientMaterial()</a> 不同，<code>specularMaterial()</code> 将反射包括 <a href="/reference/p5/directionalLight">directionalLight()</a>、<a href="/reference/p5/pointLight">pointLight()</a> 和 <a href="/reference/p5/spotLight">spotLight()</a> 在内的光源的全彩光。这就是它赋予形状“闪亮”外观的原因。材质的光泽度可以通过 <a href="/reference/p5/shininess">shininess()</a> 函数控制。</p>
+  <p>与 <a href="/p5.js-website/reference/p5/ambientMaterial">ambientMaterial()</a> 不同，<code>specularMaterial()</code> 将反射包括 <a href="/p5.js-website/reference/p5/directionalLight">directionalLight()</a>、<a href="/p5.js-website/reference/p5/pointLight">pointLight()</a> 和 <a href="/p5.js-website/reference/p5/spotLight">spotLight()</a> 在内的光源的全彩光。这就是它赋予形状“闪亮”外观的原因。材质的光泽度可以通过 <a href="/p5.js-website/reference/p5/shininess">shininess()</a> 函数控制。</p>
 
   <p><code>specularMaterial()</code> 可以通过不同的参数以三种方式调用来设置材质的颜色。</p>
 
   <p>调用 <code>specularMaterial()</code> 的第一种方式有一个参数 <code>gray</code>。可以传递介于 0 和 255 之间的灰度值，如 <code>specularMaterial(50)</code>，来设置材质的颜色。较高的灰度值会使形状看起来更亮。</p>
 
-  <p>调用 <code>specularMaterial()</code> 的第二种方式有一个参数 <code>color</code>。可以传递一个 <a href="/reference/p5/p5.Color">p5.Color</a> 对象、一个颜色值数组或一个 CSS 颜色字符串，如 <code>specularMaterial('magenta')</code>，来设置材质的颜色。</a></p>
+  <p>调用 <code>specularMaterial()</code> 的第二种方式有一个参数 <code>color</code>。可以传递一个 <a href="/p5.js-website/reference/p5/p5.Color">p5.Color</a> 对象、一个颜色值数组或一个 CSS 颜色字符串，如 <code>specularMaterial('magenta')</code>，来设置材质的颜色。</a></p>
 
-  <p>调用 <code>specularMaterial()</code> 的第三种方式有四个参数 <code>v1</code>、<code>v2</code>、<code>v3</code> 和 <code>alpha</code>。 <code>alpha</code> 是可选的。RGBA、HSBA 或 HSLA 值可以传递来设置材质的颜色，例如 <code>specularMaterial(255, 0, 0)</code> 或 <code>specularMaterial(255, 0, 0, 30)</code>。颜色值将根据当前的 <a href="/reference/p5/colorMode">colorMode()</a> 进行解释。</p>
+  <p>调用 <code>specularMaterial()</code> 的第三种方式有四个参数 <code>v1</code>、<code>v2</code>、<code>v3</code> 和 <code>alpha</code>。 <code>alpha</code> 是可选的。RGBA、HSBA 或 HSLA 值可以传递来设置材质的颜色，例如 <code>specularMaterial(255, 0, 0)</code> 或 <code>specularMaterial(255, 0, 0, 30)</code>。颜色值将根据当前的 <a href="/p5.js-website/reference/p5/colorMode">colorMode()</a> 进行解释。</p>
 line: 1888
 isConstructor: false
 itemtype: method

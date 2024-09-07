@@ -4,13 +4,13 @@ module: 3D
 submodule: Material
 file: src/webgl/material.js
 description: >
-  <p>Establece el objeto <a href="/reference/p5/p5.Shader">p5.Shader</a> para aplicar mientras se dibuja.</p>
+  <p>Establece el objeto <a href="/p5.js-website/reference/p5/p5.Shader">p5.Shader</a> para aplicar mientras se dibuja.</p>
 
   <p>Los shaders son programas que se ejecutan en la unidad de procesamiento gráfico (GPU). Pueden procesar muchos píxeles o vértices al mismo tiempo, lo que los hace rápidos para muchas tareas gráficas. Están escritos en un lenguaje llamado <a href="https://developer.mozilla.org/en-US/docs/Games/Techniques/3D_on_the_web/GLSL_Shaders" target="_blank">GLSL</a> y se ejecutan junto con el resto del código en un sketch.</p>
 
-  <p>Los objetos <a href="/reference/p5/p5.Shader">p5.Shader</a> se pueden crear utilizando las funciones <a href="/reference/p5/createShader">createShader()</a> y <a href="/reference/p5/loadShader">loadShader()</a>.</p>
+  <p>Los objetos <a href="/p5.js-website/reference/p5/p5.Shader">p5.Shader</a> se pueden crear utilizando las funciones <a href="/p5.js-website/reference/p5/createShader">createShader()</a> y <a href="/p5.js-website/reference/p5/loadShader">loadShader()</a>.</p>
 
-  <p>El parámetro <code>s</code> es el objeto <a href="/reference/p5/p5.Shader">p5.Shader</a> que se va a aplicar. Por ejemplo, llamar a <code>shader(myShader)</code> aplica <code>myShader</code> para procesar cada píxel en el lienzo. El shader se utilizará para:</p>
+  <p>El parámetro <code>s</code> es el objeto <a href="/p5.js-website/reference/p5/p5.Shader">p5.Shader</a> que se va a aplicar. Por ejemplo, llamar a <code>shader(myShader)</code> aplica <code>myShader</code> para procesar cada píxel en el lienzo. El shader se utilizará para:</p>
 
   <ul>
     <li>Rellenar cuando se habilita una textura si incluye un uniforme <code>sampler2D</code>.</li>
@@ -19,9 +19,9 @@ description: >
     <li>Trazar líneas si incluye el uniforme <code>uStrokeWeight</code>.</li>
   </ul>
 
-  <p>El código fuente de los shaders de fragmentos y vértices de un objeto <a href="/reference/p5/p5.Shader">p5.Shader</a> se compilará la primera vez que se pase a <code>shader()</code>. Consulta <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/compileShader" target="_blank">MDN</a> para obtener más información sobre la compilación de shaders.</p>
+  <p>El código fuente de los shaders de fragmentos y vértices de un objeto <a href="/p5.js-website/reference/p5/p5.Shader">p5.Shader</a> se compilará la primera vez que se pase a <code>shader()</code>. Consulta <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/compileShader" target="_blank">MDN</a> para obtener más información sobre la compilación de shaders.</p>
 
-  <p>Llamar a <a href="/reference/p5/resetShader">resetShader()</a> restaura los shaders predeterminados del sketch.</p>
+  <p>Llamar a <a href="/p5.js-website/reference/p5/resetShader">resetShader()</a> restaura los shaders predeterminados del sketch.</p>
 
   <p>Nota: Los shaders solo se pueden utilizar en el modo WebGL.</p>
 line: 571

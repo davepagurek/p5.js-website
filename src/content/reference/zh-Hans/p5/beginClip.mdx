@@ -6,13 +6,13 @@ file: src/color/setting.js
 description: >
   <p>开始定义一个形状，该形状将遮罩之后绘制的任何形状。</p>
 
-  <p>在 <code>beginClip()</code> 和 <a href="/reference/p5/endClip">endClip()</a> 之间绘制的任何形状都将添加到遮罩形状中。遮罩将应用于在 <a href="/reference/p5/endClip">endClip()</a> 之后绘制的任何内容。</p>
+  <p>在 <code>beginClip()</code> 和 <a href="/p5.js-website/reference/p5/endClip">endClip()</a> 之间绘制的任何形状都将添加到遮罩形状中。遮罩将应用于在 <a href="/p5.js-website/reference/p5/endClip">endClip()</a> 之后绘制的任何内容。</p>
 
   <p>参数 <code>options</code> 是可选的。如果传入一个包含 <code>invert</code> 属性的对象，比如 <code>beginClip({ invert: true })</code>，它会被用于设置遮罩模式。<code>{ invert: true }</code> 会反转遮罩，即在被遮罩的形状中创建空洞。<code>invert</code> 的默认值是 <code>false</code>。</p>
 
-  <p>遮罩可以被包裹在 <a href="/reference/p5/push">push()</a> 和 <a href="/reference/p5/pop">pop()</a> 函数之间。这样可以在遮罩形状之后绘制不被遮罩的形状。</p>
+  <p>遮罩可以被包裹在 <a href="/p5.js-website/reference/p5/push">push()</a> 和 <a href="/p5.js-website/reference/p5/pop">pop()</a> 函数之间。这样可以在遮罩形状之后绘制不被遮罩的形状。</p>
 
-  <p>遮罩也可以通过传递给 <a href="/reference/p5/clip">clip()</a> 的回调函数来定义。</p>
+  <p>遮罩也可以通过传递给 <a href="/p5.js-website/reference/p5/clip">clip()</a> 的回调函数来定义。</p>
 line: 13
 isConstructor: false
 itemtype: method

@@ -6,17 +6,17 @@ file: src/webgl/light.js
 description: >
   <p>Establece el color especular para las luces.</p>
 
-  <p><code>specularColor()</code> afecta a las luces que rebotan en una superficie en una dirección preferida. Estas luces incluyen <a href="/reference/p5/directionalLight">directionalLight()</a>, <a href="/reference/p5/pointLight">pointLight()</a> y <a href="/reference/p5/spotLight">spotLight()</a>. La función ayuda a crear reflejos en objetos <a href="/reference/p5/p5.Geometry">p5.Geometry</a> que están estilizados con <a href="/reference/p5/specularMaterial">specularMaterial()</a>. Si una geometría no utiliza <a href="/reference/p5/specularMaterial">specularMaterial()</a>, entonces <code>specularColor()</code> no tendrá efecto.</p>
+  <p><code>specularColor()</code> afecta a las luces que rebotan en una superficie en una dirección preferida. Estas luces incluyen <a href="/p5.js-website/reference/p5/directionalLight">directionalLight()</a>, <a href="/p5.js-website/reference/p5/pointLight">pointLight()</a> y <a href="/p5.js-website/reference/p5/spotLight">spotLight()</a>. La función ayuda a crear reflejos en objetos <a href="/p5.js-website/reference/p5/p5.Geometry">p5.Geometry</a> que están estilizados con <a href="/p5.js-website/reference/p5/specularMaterial">specularMaterial()</a>. Si una geometría no utiliza <a href="/p5.js-website/reference/p5/specularMaterial">specularMaterial()</a>, entonces <code>specularColor()</code> no tendrá efecto.</p>
 
-  <p>Nota: <code>specularColor()</code> no afecta a las luces que rebotan en todas las direcciones, incluyendo <a href="/reference/p5/ambientLight">ambientLight()</a> e <a href="/reference/p5/imageLight">imageLight()</a>.</p>
+  <p>Nota: <code>specularColor()</code> no afecta a las luces que rebotan en todas las direcciones, incluyendo <a href="/p5.js-website/reference/p5/ambientLight">ambientLight()</a> e <a href="/p5.js-website/reference/p5/imageLight">imageLight()</a>.</p>
 
   <p>Hay tres formas de llamar a <code>specularColor()</code> con parámetros opcionales para establecer el color del reflejo especular.</p>
 
   <p>La primera forma de llamar a <code>specularColor()</code> tiene dos parámetros opcionales, <code>gray</code> y <code>alpha</code>. Se pueden pasar valores de escala de grises y alfa entre 0 y 255, como en <code>specularColor(50)</code> o <code>specularColor(50, 80)</code>, para establecer el color del reflejo especular.</p>
 
-  <p>La segunda forma de llamar a <code>specularColor()</code> tiene un parámetro opcional, <code>color</code>. Se puede pasar un objeto <a href="/reference/p5/p5.Color">p5.Color</a>, un arreglo de valores de color o una cadena de color CSS para establecer el color del reflejo especular.</p>
+  <p>La segunda forma de llamar a <code>specularColor()</code> tiene un parámetro opcional, <code>color</code>. Se puede pasar un objeto <a href="/p5.js-website/reference/p5/p5.Color">p5.Color</a>, un arreglo de valores de color o una cadena de color CSS para establecer el color del reflejo especular.</p>
 
-  <p>La tercera forma de llamar a <code>specularColor()</code> tiene cuatro parámetros opcionales, <code>v1</code>, <code>v2</code>, <code>v3</code> y <code>alpha</code>. Se pueden pasar valores RGBA, HSBA o HSLA, como en <code>specularColor(255, 0, 0, 80)</code>, para establecer el color del reflejo especular. Los valores de color se interpretarán utilizando el <a href="/reference/p5/colorMode">colorMode()</a> actual.</p>
+  <p>La tercera forma de llamar a <code>specularColor()</code> tiene cuatro parámetros opcionales, <code>v1</code>, <code>v2</code>, <code>v3</code> y <code>alpha</code>. Se pueden pasar valores RGBA, HSBA o HSLA, como en <code>specularColor(255, 0, 0, 80)</code>, para establecer el color del reflejo especular. Los valores de color se interpretarán utilizando el <a href="/p5.js-website/reference/p5/colorMode">colorMode()</a> actual.</p>
 line: 205
 isConstructor: false
 itemtype: method

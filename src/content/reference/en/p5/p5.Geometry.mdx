@@ -337,11 +337,11 @@ methods:
 
       vertices or the entire shape. When a geometry has internal colors,
 
-      <a href="/reference/p5/fill">fill()</a> has no effect. Calling
+      <a href="/p5.js-website/reference/p5/fill">fill()</a> has no effect. Calling
 
       <code>myGeometry.clearColors()</code> allows the
 
-      <a href="/reference/p5/fill">fill()</a> function to apply color to the
+      <a href="/p5.js-website/reference/p5/fill">fill()</a> function to apply color to the
       geometry.</p>
     path: p5.Geometry/clearColors
   saveObj:
@@ -384,7 +384,7 @@ methods:
     description: >
       <p>Flips the geometry’s texture u-coordinates.</p>
 
-      <p>In order for <a href="/reference/p5/texture">texture()</a> to work, the
+      <p>In order for <a href="/p5.js-website/reference/p5/texture">texture()</a> to work, the
       geometry
 
       needs a way to map the points on its surface to the pixels in a
@@ -395,7 +395,7 @@ methods:
       <code>(x, y, z)</code> maps to the texture image's pixel at coordinates
       <code>(u, v)</code>.</p>
 
-      <p>The <a href="/reference/p5.Geometry/uvs">myGeometry.uvs</a> array
+      <p>The <a href="/p5.js-website/reference/p5.Geometry/uvs">myGeometry.uvs</a> array
       stores the
 
       <code>(u, v)</code> coordinates for each vertex in the order it was added
@@ -445,7 +445,7 @@ methods:
     description: >
       <p>Flips the geometry’s texture v-coordinates.</p>
 
-      <p>In order for <a href="/reference/p5/texture">texture()</a> to work, the
+      <p>In order for <a href="/p5.js-website/reference/p5/texture">texture()</a> to work, the
       geometry
 
       needs a way to map the points on its surface to the pixels in a
@@ -456,7 +456,7 @@ methods:
       <code>(x, y, z)</code> maps to the texture image's pixel at coordinates
       <code>(u, v)</code>.</p>
 
-      <p>The <a href="/reference/p5.Geometry/uvs">myGeometry.uvs</a> array
+      <p>The <a href="/p5.js-website/reference/p5.Geometry/uvs">myGeometry.uvs</a> array
       stores the
 
       <code>(u, v)</code> coordinates for each vertex in the order it was added
@@ -519,14 +519,14 @@ methods:
       define each face based on the distances between vertices.</p>
 
       <p>The geometry's vertices are stored as <a
-      href="/reference/p5/p5.Vector">p5.Vector</a>
+      href="/p5.js-website/reference/p5/p5.Vector">p5.Vector</a>
 
       objects in the <a
-      href="/reference/p5.Geometry/vertices">myGeometry.vertices</a>
+      href="/p5.js-website/reference/p5.Geometry/vertices">myGeometry.vertices</a>
 
       array. The geometry's first vertex is the
 
-      <a href="/reference/p5/p5.Vector">p5.Vector</a> object at
+      <a href="/p5.js-website/reference/p5/p5.Vector">p5.Vector</a> object at
       <code>myGeometry.vertices[0]</code>,
 
       its second vertex is <code>myGeometry.vertices[1]</code>, its third vertex
@@ -536,14 +536,14 @@ methods:
 
       <p>Calling <code>myGeometry.computeFaces()</code> fills the
 
-      <a href="/reference/p5.Geometry/faces">myGeometry.faces</a> array with
+      <a href="/p5.js-website/reference/p5.Geometry/faces">myGeometry.faces</a> array with
       three-element
 
       arrays that list the vertices that form each face. For example, a geometry
 
       made from a rectangle has two faces because a rectangle is made by joining
 
-      two triangles. <a href="/reference/p5.Geometry/faces">myGeometry.faces</a>
+      two triangles. <a href="/p5.js-website/reference/p5.Geometry/faces">myGeometry.faces</a>
       for a
 
       rectangle would be the two-dimensional array
@@ -599,11 +599,11 @@ methods:
 
       normal vectors of the faces surrounding the vertex. The vertex normals
 
-      are stored as <a href="/reference/p5/p5.Vector">p5.Vector</a> objects in
+      are stored as <a href="/p5.js-website/reference/p5/p5.Vector">p5.Vector</a> objects in
       the
 
       <a
-      href="/reference/p5.Geometry/vertexNormals">myGeometry.vertexNormals</a>
+      href="/p5.js-website/reference/p5.Geometry/vertexNormals">myGeometry.vertexNormals</a>
       array.</p>
 
       <p>The first parameter, <code>shadingType</code>, is optional. Passing the
@@ -654,7 +654,7 @@ methods:
 
       <p>Note: <code>myGeometry.normalize()</code> only works when called in the
 
-      <a href="/reference/p5/setup">setup()</a> function.</p>
+      <a href="/p5.js-website/reference/p5/setup">setup()</a> function.</p>
     path: p5.Geometry/normalize
 properties:
   vertices:
@@ -663,12 +663,12 @@ properties:
 
       <p>The geometry's vertices are stored as
 
-      <a href="/reference/p5/p5.Vector">p5.Vector</a> objects in the
+      <a href="/p5.js-website/reference/p5/p5.Vector">p5.Vector</a> objects in the
       <code>myGeometry.vertices</code>
 
       array. The geometry's first vertex is the
 
-      <a href="/reference/p5/p5.Vector">p5.Vector</a> object at
+      <a href="/p5.js-website/reference/p5/p5.Vector">p5.Vector</a> object at
       <code>myGeometry.vertices[0]</code>,
 
       its second vertex is <code>myGeometry.vertices[1]</code>, its third vertex
@@ -694,7 +694,7 @@ properties:
       averaging the normal vectors of the faces surrounding the vertex. The
 
       vertex normals are stored as <a
-      href="/reference/p5/p5.Vector">p5.Vector</a>
+      href="/p5.js-website/reference/p5/p5.Vector">p5.Vector</a>
 
       objects in the <code>myGeometry.vertexNormals</code> array.</p>
     path: p5.Geometry/vertexNormals
@@ -715,13 +715,13 @@ properties:
 
       <p>The geometry's vertices are stored as
 
-      <a href="/reference/p5/p5.Vector">p5.Vector</a> objects in the
+      <a href="/p5.js-website/reference/p5/p5.Vector">p5.Vector</a> objects in the
 
-      <a href="/reference/p5.Geometry/vertices">myGeometry.vertices</a> array.
+      <a href="/p5.js-website/reference/p5.Geometry/vertices">myGeometry.vertices</a> array.
       The
 
       geometry's first vertex is the <a
-      href="/reference/p5/p5.Vector">p5.Vector</a>
+      href="/p5.js-website/reference/p5/p5.Vector">p5.Vector</a>
 
       object at <code>myGeometry.vertices[0]</code>, its second vertex is
 
@@ -760,7 +760,7 @@ properties:
 
       vertices.</p>
 
-      <p>In order for <a href="/reference/p5/texture">texture()</a> to work, the
+      <p>In order for <a href="/p5.js-website/reference/p5/texture">texture()</a> to work, the
       geometry
 
       needs a way to map the points on its surface to the pixels in a

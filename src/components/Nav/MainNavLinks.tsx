@@ -31,7 +31,7 @@ export const MainNavLinks = ({
   const renderLogo = () => (
     <div class={styles.logo}>
       <a
-        href="/"
+        href="/p5.js-website/"
         class={`${
           isHomepage
             ? "text-logo-color hover:text-sidebar-type-color"
@@ -90,7 +90,7 @@ export const MainNavLinks = ({
             </a>
           </li>
           <li>
-            <a className={styles.buttonlink} href="/donate/">
+            <a className={styles.buttonlink} href="/p5.js-website/donate/">
               <div class="mr-xxs">
                 <Icon kind="heart" />
               </div>

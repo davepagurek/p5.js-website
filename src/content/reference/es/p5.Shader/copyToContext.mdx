@@ -7,24 +7,24 @@ description: >
   <p>Copia el shader de un contexto de dibujo a otro.</p>
 
   <p>Cada objeto <code>p5.Shader</code> debe ser compilado llamando a la función
-  <a href="/reference/p5/shader">shader()</a> antes de poder ejecutarse. La compilación
+  <a href="/p5.js-website/reference/p5/shader">shader()</a> antes de poder ejecutarse. La compilación
   ocurre en un contexto de dibujo que generalmente es el lienzo principal o una instancia de
-  <a href="/reference/p5/p5.Graphics">p5.Graphics</a>. Un shader solo puede ser utilizado en el
+  <a href="/p5.js-website/reference/p5/p5.Graphics">p5.Graphics</a>. Un shader solo puede ser utilizado en el
   contexto donde fue compilado. El método <code>copyToContext()</code> compila el
   shader nuevamente y lo copia a otro contexto de dibujo donde puede ser reutilizado.</p>
 
   <p>El parámetro <code>context</code> es el contexto de dibujo donde se utilizará el shader. El shader
-  puede ser copiado a una instancia de <a href="/reference/p5/p5.Graphics">p5.Graphics</a>, como en
+  puede ser copiado a una instancia de <a href="/p5.js-website/reference/p5/p5.Graphics">p5.Graphics</a>, como en
   <code>miShader.copyToContext(pg)</code>. El shader también puede ser copiado desde un objeto
-  <a href="/reference/p5/p5.Graphics">p5.Graphics</a> al lienzo principal utilizando la variable
+  <a href="/p5.js-website/reference/p5/p5.Graphics">p5.Graphics</a> al lienzo principal utilizando la variable
   <code>window</code>, como en <code>miShader.copyToContext(window)</code>.</p>
 
-  <p>Nota: Un objeto <a href="/reference/p5/p5.Shader">p5.Shader</a> creado con
-  <a href="/reference/p5/createShader">createShader()</a>,
-  <a href="/reference/p5/createFilterShader">createFilterShader()</a> o
-  <a href="/reference/p5/loadShader">loadShader()</a>
-  puede ser utilizado directamente con un objeto <a href="/reference/p5/p5.Framebuffer">p5.Framebuffer</a>
-  creado con <a href="/reference/p5/createFramebuffer">createFramebuffer()</a>. Ambos objetos
+  <p>Nota: Un objeto <a href="/p5.js-website/reference/p5/p5.Shader">p5.Shader</a> creado con
+  <a href="/p5.js-website/reference/p5/createShader">createShader()</a>,
+  <a href="/p5.js-website/reference/p5/createFilterShader">createFilterShader()</a> o
+  <a href="/p5.js-website/reference/p5/loadShader">loadShader()</a>
+  puede ser utilizado directamente con un objeto <a href="/p5.js-website/reference/p5/p5.Framebuffer">p5.Framebuffer</a>
+  creado con <a href="/p5.js-website/reference/p5/createFramebuffer">createFramebuffer()</a>. Ambos objetos
   tienen el mismo contexto que el lienzo principal.</p>
 line: 211
 isConstructor: false

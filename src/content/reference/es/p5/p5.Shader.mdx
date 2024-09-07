@@ -8,9 +8,9 @@ description: >
 
   <p>Cada objeto <code>p5.Shader</code> contiene un programa de sombreado que se ejecuta en la unidad de procesamiento gráfico (GPU). Los sombreadores pueden procesar muchos píxeles o vértices al mismo tiempo, lo que los hace rápidos para muchas tareas gráficas. Están escritos en un lenguaje llamado <a href="https://developer.mozilla.org/en-US/docs/Games/Techniques/3D_on_the_web/GLSL_Shaders" target="_blank">GLSL</a> y se ejecutan junto con el resto del código en un sketch.</p>
 
-  <p>Un programa de sombreado consta de dos archivos, un sombreador de vértices y un sombreador de fragmentos. El sombreador de vértices afecta dónde se dibuja la geometría 3D en la pantalla y el sombreador de fragmentos afecta el color. Una vez que se crea el objeto <code>p5.Shader</code>, se puede usar con la función <a href="/reference/p5/shader">shader()</a>, como en <code>shader(myShader)</code>.</p>
+  <p>Un programa de sombreado consta de dos archivos, un sombreador de vértices y un sombreador de fragmentos. El sombreador de vértices afecta dónde se dibuja la geometría 3D en la pantalla y el sombreador de fragmentos afecta el color. Una vez que se crea el objeto <code>p5.Shader</code>, se puede usar con la función <a href="/p5.js-website/reference/p5/shader">shader()</a>, como en <code>shader(myShader)</code>.</p>
 
-  <p>Nota: <a href="/reference/p5/createShader">createShader()</a>, <a href="/reference/p5/createFilterShader">createFilterShader()</a> y <a href="/reference/p5/loadShader">loadShader()</a> son las formas recomendadas de crear una instancia de esta clase.</p>
+  <p>Nota: <a href="/p5.js-website/reference/p5/createShader">createShader()</a>, <a href="/p5.js-website/reference/p5/createFilterShader">createFilterShader()</a> y <a href="/p5.js-website/reference/p5/loadShader">loadShader()</a> son las formas recomendadas de crear una instancia de esta clase.</p>
 line: 11
 isConstructor: true
 params:
@@ -119,11 +119,11 @@ methods:
     description: >
       <p>Copia el sombreador de un contexto de dibujo a otro.</p>
 
-      <p>Cada objeto <code>p5.Shader</code> debe ser compilado llamando a la función <a href="/reference/p5/shader">shader()</a> antes de poder ejecutarse. La compilación se realiza en un contexto de dibujo que generalmente es el lienzo principal o una instancia de <a href="/reference/p5/p5.Graphics">p5.Graphics</a>. Un sombreador solo se puede usar en el contexto donde se compiló. El método <code>copyToContext()</code> vuelve a compilar el sombreador y lo copia a otro contexto de dibujo donde se puede reutilizar.</p>
+      <p>Cada objeto <code>p5.Shader</code> debe ser compilado llamando a la función <a href="/p5.js-website/reference/p5/shader">shader()</a> antes de poder ejecutarse. La compilación se realiza en un contexto de dibujo que generalmente es el lienzo principal o una instancia de <a href="/p5.js-website/reference/p5/p5.Graphics">p5.Graphics</a>. Un sombreador solo se puede usar en el contexto donde se compiló. El método <code>copyToContext()</code> vuelve a compilar el sombreador y lo copia a otro contexto de dibujo donde se puede reutilizar.</p>
 
-      <p>El parámetro <code>context</code> es el contexto de dibujo donde se utilizará el sombreador. El sombreador se puede copiar a una instancia de <a href="/reference/p5/p5.Graphics">p5.Graphics</a>, como en <code>myShader.copyToContext(pg)</code>. También se puede copiar el sombreador desde un objeto <a href="/reference/p5/p5.Graphics">p5.Graphics</a> al lienzo principal utilizando la variable <code>window</code>, como en <code>myShader.copyToContext(window)</code>.</p>
+      <p>El parámetro <code>context</code> es el contexto de dibujo donde se utilizará el sombreador. El sombreador se puede copiar a una instancia de <a href="/p5.js-website/reference/p5/p5.Graphics">p5.Graphics</a>, como en <code>myShader.copyToContext(pg)</code>. También se puede copiar el sombreador desde un objeto <a href="/p5.js-website/reference/p5/p5.Graphics">p5.Graphics</a> al lienzo principal utilizando la variable <code>window</code>, como en <code>myShader.copyToContext(window)</code>.</p>
 
-      <p>Nota: Un objeto <a href="/reference/p5/p5.Shader">p5.Shader</a> creado con <a href="/reference/p5/createShader">createShader()</a>, <a href="/reference/p5/createFilterShader">createFilterShader()</a> o <a href="/reference/p5/loadShader">loadShader()</a> se puede utilizar directamente con un objeto <a href="/reference/p5/p5.Framebuffer">p5.Framebuffer</a> creado con <a href="/reference/p5/createFramebuffer">createFramebuffer()</a>. Ambos objetos tienen el mismo contexto que el lienzo principal.</p>
+      <p>Nota: Un objeto <a href="/p5.js-website/reference/p5/p5.Shader">p5.Shader</a> creado con <a href="/p5.js-website/reference/p5/createShader">createShader()</a>, <a href="/p5.js-website/reference/p5/createFilterShader">createFilterShader()</a> o <a href="/p5.js-website/reference/p5/loadShader">loadShader()</a> se puede utilizar directamente con un objeto <a href="/p5.js-website/reference/p5/p5.Framebuffer">p5.Framebuffer</a> creado con <a href="/p5.js-website/reference/p5/createFramebuffer">createFramebuffer()</a>. Ambos objetos tienen el mismo contexto que el lienzo principal.</p>
     path: p5.Shader/copyToContext
   setUniform:
     description: >

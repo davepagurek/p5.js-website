@@ -6,18 +6,18 @@ file: src/webgl/light.js
 description: >
   <p>रोशनी के लिए विशेषांक रंग सेट करता है।</p>
 
-  <p><code>specularColor()</code> एक विशिष्ट दिशा में सतह से उतारने वाली रोशनी पर प्रभाव डालता है। इन रोशनियों में <a href="/reference/p5/directionalLight">directionalLight()</a>, <a href="/reference/p5/pointLight">pointLight()</a>, और <a href="/reference/p5/spotLight">spotLight()</a> शामिल होते हैं। यह फ़ंक्शन <a href="/reference/p5/p5.Geometry">p5.Geometry</a> ऑब्जेक्ट्स पर हाइलाइट बनाने में मदद करता है जो <a href="/reference/p5/specularMaterial">specularMaterial()</a> के साथ स्टाइल किए गए होते हैं। यदि कोई ज्यामिति <a href="/reference/p5/specularMaterial">specularMaterial()</a> का उपयोग नहीं करती है, तो <code>specularColor()</code> का कोई प्रभाव नहीं होगा।</p>
+  <p><code>specularColor()</code> एक विशिष्ट दिशा में सतह से उतारने वाली रोशनी पर प्रभाव डालता है। इन रोशनियों में <a href="/p5.js-website/reference/p5/directionalLight">directionalLight()</a>, <a href="/p5.js-website/reference/p5/pointLight">pointLight()</a>, और <a href="/p5.js-website/reference/p5/spotLight">spotLight()</a> शामिल होते हैं। यह फ़ंक्शन <a href="/p5.js-website/reference/p5/p5.Geometry">p5.Geometry</a> ऑब्जेक्ट्स पर हाइलाइट बनाने में मदद करता है जो <a href="/p5.js-website/reference/p5/specularMaterial">specularMaterial()</a> के साथ स्टाइल किए गए होते हैं। यदि कोई ज्यामिति <a href="/p5.js-website/reference/p5/specularMaterial">specularMaterial()</a> का उपयोग नहीं करती है, तो <code>specularColor()</code> का कोई प्रभाव नहीं होगा।</p>
 
-  <p>नोट: <code>specularColor()</code> वह रोशनियों पर प्रभाव नहीं डालता है जो सभी दिशाओं में उतरती हैं, जैसा कि <a href="/reference/p5/ambientLight">ambientLight()</a> और <a href="/reference/p5/imageLight">imageLight()</a>।</p>
+  <p>नोट: <code>specularColor()</code> वह रोशनियों पर प्रभाव नहीं डालता है जो सभी दिशाओं में उतरती हैं, जैसा कि <a href="/p5.js-website/reference/p5/ambientLight">ambientLight()</a> और <a href="/p5.js-website/reference/p5/imageLight">imageLight()</a>।</p>
 
   <p>स्पेक्युलर हाइलाइट रंग सेट करने के लिए वैकल्पिक पैरामीटर के साथ <code>specularColor()</code> को कॉल करने के तीन तरीके हैं।</p>
 
   <p>कॉल करने का पहला तरीका <code>specularColor()</code> में दो वैकल्पिक पैरामीटर हैं, <code>ग्रे</code> और <code>alpha</code>। ग्रेस्केल और अल्फा मान 0 और 255 के बीच, जैसे <code>specularColor(50)</code> या <code>specularColor(50, 80)</code>, हो सकते हैं
   स्पेक्युलर हाइलाइट रंग सेट करने के लिए पारित किया गया।</p>
 
-  <p>कॉल करने का दूसरा तरीका <code>specularColor()</code> में एक वैकल्पिक पैरामीटर है, <code>रंग</code>. स्पेक्युलर हाइलाइट रंग सेट करने के लिए एक <a href="/reference/p5/p5.Color">p5.Color</a> ऑब्जेक्ट, रंग मानों की एक सरणी, या एक CSS रंग स्ट्रिंग को पास किया जा सकता है।</p>
+  <p>कॉल करने का दूसरा तरीका <code>specularColor()</code> में एक वैकल्पिक पैरामीटर है, <code>रंग</code>. स्पेक्युलर हाइलाइट रंग सेट करने के लिए एक <a href="/p5.js-website/reference/p5/p5.Color">p5.Color</a> ऑब्जेक्ट, रंग मानों की एक सरणी, या एक CSS रंग स्ट्रिंग को पास किया जा सकता है।</p>
 
-  <p>कॉल करने का तीसरा तरीका <code>specularColor()</code> में चार वैकल्पिक पैरामीटर हैं, <code>v1</code>, <code>v2</code>, <code>v3</code>, और <code>alpha</code>। RGBA, HSBA, या HSLA मान, जैसे कि <code>specularColor(255, 0, 0, 80)</code>, को specular हाइलाइट रंग सेट करने के लिए पारित किया जा सकता है। रंग मानों की व्याख्या वर्तमान <a href="/reference/p5/colorMode">colorMode()</a> का उपयोग करके की जाएगी।</p>
+  <p>कॉल करने का तीसरा तरीका <code>specularColor()</code> में चार वैकल्पिक पैरामीटर हैं, <code>v1</code>, <code>v2</code>, <code>v3</code>, और <code>alpha</code>। RGBA, HSBA, या HSLA मान, जैसे कि <code>specularColor(255, 0, 0, 80)</code>, को specular हाइलाइट रंग सेट करने के लिए पारित किया जा सकता है। रंग मानों की व्याख्या वर्तमान <a href="/p5.js-website/reference/p5/colorMode">colorMode()</a> का उपयोग करके की जाएगी।</p>
 line: 205
 isConstructor: false
 itemtype: method

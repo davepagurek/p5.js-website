@@ -4,19 +4,19 @@ module: 3D
 submodule: 材质
 file: src/webgl/material.js
 description: >
-  <p>加载顶点和片段着色器以创建一个 <a href="/reference/p5/p5.Shader">p5.Shader</a> 对象。</p>
+  <p>加载顶点和片段着色器以创建一个 <a href="/p5.js-website/reference/p5/p5.Shader">p5.Shader</a> 对象。</p>
 
   <p>着色器是在图形处理单元（GPU）上运行的程序。它们可以同时处理许多像素，因此对于许多图形任务来说速度很快。它们是用一种叫做 <a href="https://developer.mozilla.org/en-US/docs/Games/Techniques/3D_on_the_web/GLSL_Shaders" target="_blank">GLSL</a> 的语言编写的，并且与绘图中的其他代码一起运行。</p>
 
-  <p>一旦创建了 <a href="/reference/p5/p5.Shader">p5.Shader</a> 对象，它就可以与 <a href="/reference/p5/shader">shader()</a> 函数一起使用，例如：<code>shader(myShader)</code>。着色器程序由两个文件组成，一个顶点着色器和一个片段着色器。顶点着色器影响 3D 几何体在屏幕上的绘制位置，而片段着色器影响颜色。</p>
+  <p>一旦创建了 <a href="/p5.js-website/reference/p5/p5.Shader">p5.Shader</a> 对象，它就可以与 <a href="/p5.js-website/reference/p5/shader">shader()</a> 函数一起使用，例如：<code>shader(myShader)</code>。着色器程序由两个文件组成，一个顶点着色器和一个片段着色器。顶点着色器影响 3D 几何体在屏幕上的绘制位置，而片段着色器影响颜色。</p>
 
-  <p><code>loadShader()</code> 从 <code>.vert</code> 和 <code>.frag</code> 文件加载顶点和片段着色器。 例如，调用 <code>loadShader('/assets/shader.vert', '/assets/shader.frag')</code> 加载所需的着色器并返回 <a href="/reference/p5/p5.Shader">p5 .Shader</a> 对象。</p>
+  <p><code>loadShader()</code> 从 <code>.vert</code> 和 <code>.frag</code> 文件加载顶点和片段着色器。 例如，调用 <code>loadShader('/assets/shader.vert', '/assets/shader.frag')</code> 加载所需的着色器并返回 <a href="/p5.js-website/reference/p5/p5.Shader">p5 .Shader</a> 对象。</p>
 
-  <p> 第三个参数 <code>successCallback</code> 是可选的。 如果传递一个函数，则着色器加载后就会调用该函数。 回调函数可以使用新的 <a href="/reference/p5/p5.Shader">p5.Shader</a> 对象作为其参数。</p>
+  <p> 第三个参数 <code>successCallback</code> 是可选的。 如果传递一个函数，则着色器加载后就会调用该函数。 回调函数可以使用新的 <a href="/p5.js-website/reference/p5/p5.Shader">p5.Shader</a> 对象作为其参数。</p>
 
   <p>第四个参数 <code>failureCallback</code> 也是可选的。 如果传递一个函数，则在着色器加载失败时将调用该函数。 回调函数可以使用事件错误作为其参数。</p>
 
-  <p>着色器可能需要一些时间来加载。 在 <a href="/reference/p5/preload">preload()</a> 中调用 <code>loadShader()</code> 可确保着色器在用于 <a href="/reference/p5 之前加载 /setup">setup()</a> 或 <a href="/reference/p5/draw">draw()</a>。</p>
+  <p>着色器可能需要一些时间来加载。 在 <a href="/p5.js-website/reference/p5/preload">preload()</a> 中调用 <code>loadShader()</code> 可确保着色器在用于 <a href="/p5.js-website/reference/p5 之前加载 /setup">setup()</a> 或 <a href="/p5.js-website/reference/p5/draw">draw()</a>。</p>
 
   <p>注意：着色器只能在 WebGL 模式下使用。</p>
 line: 12
