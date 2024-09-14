@@ -9,7 +9,7 @@ description: >
   and textures.</p>
 
   <p>You can call <a
-  href="/p5.js-website/reference/p5.Shader/modify"><code>materialShader().modify()</code></a>
+  href="/reference/p5.Shader/modify/"><code>materialShader().modify()</code></a>
 
   and change any of the following hooks:</p>
 
@@ -249,7 +249,7 @@ description: >
   hooks and
 
   their default implementations.</p>
-line: 884
+line: 886
 isConstructor: false
 itemtype: method
 example:
@@ -262,7 +262,9 @@ example:
     function setup() {
       createCanvas(200, 200, WEBGL);
       myShader = materialShader().modify({
-        declarations: 'uniform float time;',
+        uniforms: {
+          'float time': () => millis()
+        },
         'vec3 getWorldPosition': `(vec3 pos) {
           pos.y += 20.0 * sin(time * 0.001 + pos.x * 0.05);
           return pos;
@@ -273,7 +275,6 @@ example:
     function draw() {
       background(255);
       shader(myShader);
-      myShader.setUniform('time', millis());
       lights();
       noStroke();
       fill('red');
@@ -324,7 +325,7 @@ example:
     let environment;
 
     function preload() {
-      environment = loadImage('/p5.js-website/assets/outdoor_spheremap.jpg');
+      environment = loadImage('/assets/outdoor_spheremap.jpg');
     }
 
     function setup() {
@@ -407,6 +408,7 @@ return:
   description: The material shader
   type: p5.Shader
 chainable: false
+beta: true
 ---
 
 

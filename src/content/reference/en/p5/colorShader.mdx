@@ -7,7 +7,7 @@ description: >
   <p>Get the shader used when no lights or materials are applied.</p>
 
   <p>You can call <a
-  href="/p5.js-website/reference/p5.Shader/modify"><code>colorShader().modify()</code></a>
+  href="/reference/p5.Shader/modify/"><code>colorShader().modify()</code></a>
 
   and change any of the following hooks:</p>
 
@@ -131,7 +131,7 @@ description: >
   hooks and
 
   their default implementations.</p>
-line: 1286
+line: 1292
 isConstructor: false
 itemtype: method
 example:
@@ -144,7 +144,9 @@ example:
     function setup() {
       createCanvas(200, 200, WEBGL);
       myShader = colorShader().modify({
-        declarations: 'uniform float time;',
+        uniforms: {
+          'float time': () => millis()
+        },
         'vec3 getWorldPosition': `(vec3 pos) {
           pos.y += 20. * sin(time * 0.001 + pos.x * 0.05);
           return pos;
@@ -155,7 +157,6 @@ example:
     function draw() {
       background(255);
       shader(myShader);
-      myShader.setUniform('time', millis());
       noStroke();
       fill('red');
       circle(0, 0, 50);
@@ -167,6 +168,7 @@ return:
   description: The color shader
   type: p5.Shader
 chainable: false
+beta: true
 ---
 
 

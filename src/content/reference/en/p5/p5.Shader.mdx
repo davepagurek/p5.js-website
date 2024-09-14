@@ -16,7 +16,7 @@ description: >
   language called
 
   <a
-  href="https://developer.mozilla.org/en-US/docs/Games/Techniques/3D_on_the_web/GLSL_Shaders"
+  href="https://developer.mozilla.org/en-US/docs/Games/Techniques/3D_on_the_web/GLSL_Shaders/"
   target="_blank">GLSL</a>
 
   and run along with the rest of the code in a sketch.</p>
@@ -28,7 +28,7 @@ description: >
   and the fragment shader affects color. Once the <code>p5.Shader</code> object
   is
 
-  created, it can be used with the <a href="/p5.js-website/reference/p5/shader">shader()</a>
+  created, it can be used with the <a href="/reference/p5/shader/">shader()</a>
 
   function, as in <code>shader(myShader)</code>.</p>
 
@@ -69,11 +69,11 @@ description: >
 
   </code></pre>
 
-  <p>Note: <a href="/p5.js-website/reference/p5/createShader">createShader()</a>,
+  <p>Note: <a href="/reference/p5/createShader/">createShader()</a>,
 
-  <a href="/p5.js-website/reference/p5/createFilterShader">createFilterShader()</a>, and
+  <a href="/reference/p5/createFilterShader/">createFilterShader()</a>, and
 
-  <a href="/p5.js-website/reference/p5/loadShader">loadShader()</a> are the recommended ways
+  <a href="/reference/p5/loadShader/">loadShader()</a> are the recommended ways
   to
 
   create an instance of this class.</p>
@@ -216,7 +216,63 @@ methods:
 
       you are able to use in a call to
 
-      <a href="/p5.js-website/reference/p5.Shader/modify"><code>modify()</code></a>.</p>
+      <a href="/reference/p5.Shader/modify/"><code>modify()</code></a>.</p>
+
+      <p>For example, this shader will produce the following output:</p>
+
+      <pre><code class="language-js">myShader = materialShader().modify({
+        declarations: 'uniform float time;',
+        'vec3 getWorldPosition': `(vec3 pos) {
+          pos.y += 20. * sin(time * 0.001 + pos.x * 0.05);
+          return pos;
+        }`
+      });
+
+      myShader.inspectHooks();
+
+      </code></pre>
+
+      <pre><code>==== Vertex shader hooks: ====
+
+      void beforeVertex() {}
+
+      vec3 getLocalPosition(vec3 position) { return position; }
+
+      [MODIFIED] vec3 getWorldPosition(vec3 pos) {
+            pos.y += 20. * sin(time * 0.001 + pos.x * 0.05);
+            return pos;
+          }
+      vec3 getLocalNormal(vec3 normal) { return normal; }
+
+      vec3 getWorldNormal(vec3 normal) { return normal; }
+
+      vec2 getUV(vec2 uv) { return uv; }
+
+      vec4 getVertexColor(vec4 color) { return color; }
+
+      void afterVertex() {}
+
+
+      ==== Fragment shader hooks: ====
+
+      void beforeFragment() {}
+
+      Inputs getPixelInputs(Inputs inputs) { return inputs; }
+
+      vec4 combineColors(ColorComponents components) {
+                      vec4 color = vec4(0.);
+                      color.rgb += components.diffuse * components.baseColor;
+                      color.rgb += components.ambient * components.ambientColor;
+                      color.rgb += components.specular * components.specularColor;
+                      color.rgb += components.emissive;
+                      color.a = components.opacity;
+                      return color;
+                    }
+      vec4 getFinalColor(vec4 color) { return color; }
+
+      void afterFragment() {}
+
+      </code></pre>
     path: p5.Shader/inspectHooks
   modify:
     description: >
@@ -236,7 +292,7 @@ methods:
       color. You can inspect the different hooks available by calling
 
       <a
-      href="/p5.js-website/reference/p5.Shader/inspectHooks"><code>yourShader.inspectHooks()</code></a>.
+      href="/reference/p5.Shader/inspectHooks/"><code>yourShader.inspectHooks()</code></a>.
       You can
 
       also read the reference for the default material, normal material, color,
@@ -249,15 +305,30 @@ methods:
 
       to override. Each key of the <code>hooks</code> object is the name
 
-      of a hook, and the value is a string with the GLSL code for your hook. You
+      of a hook, and the value is a string with the GLSL code for your hook.</p>
 
-      can also add a <code>declarations</code> key, where the value is a GLSL
-      string declaring
+      <p>If you supply functions that aren't existing hooks, they will get added
+      at the start of
 
-      <a href="/p5.js-website/reference/p5.Shader/setUniform">uniform variables</a> and
-      globals shared
+      the shader as helper functions so that you can use them in your hooks.</p>
 
-      between hooks. To add declarations jsut in a vertex or fragment shader,
+      <p>To add new <a href="/reference/p5.Shader/setUniform/">uniforms</a> to
+      your shader, you can pass in a <code>uniforms</code> object containing
+
+      the type and name of the uniform as the key, and a default value or
+      function returning
+
+      a default value as its value. These will be automatically set when the
+      shader is set
+
+      with <code>shader(yourShader)</code>.</p>
+
+      <p>You can also add a <code>declarations</code> key, where the value is a
+      GLSL string declaring
+
+      custom uniform variables, globals, and functions shared
+
+      between hooks. To add declarations just in a vertex or fragment shader,
       add
 
       <code>vertexDeclarations</code> and <code>fragmentDeclarations</code>
@@ -269,12 +340,12 @@ methods:
 
       <p>Each <code>p5.Shader</code> object must be compiled by calling
 
-      <a href="/p5.js-website/reference/p5/shader">shader()</a> before it can run. Compilation
-      happens
+      <a href="/reference/p5/shader/">shader()</a> before it can run.
+      Compilation happens
 
       in a drawing context which is usually the main canvas or an instance of
 
-      <a href="/p5.js-website/reference/p5/p5.Graphics">p5.Graphics</a>. A shader can only be
+      <a href="/reference/p5/p5.Graphics">p5.Graphics</a>. A shader can only be
       used in the
 
       context where it was compiled. The <code>copyToContext()</code> method
@@ -289,32 +360,32 @@ methods:
 
       used. The shader can be copied to an instance of
 
-      <a href="/p5.js-website/reference/p5/p5.Graphics">p5.Graphics</a>, as in
+      <a href="/reference/p5/p5.Graphics">p5.Graphics</a>, as in
 
       <code>myShader.copyToContext(pg)</code>. The shader can also be copied
       from a
 
-      <a href="/p5.js-website/reference/p5/p5.Graphics">p5.Graphics</a> object to the main
+      <a href="/reference/p5/p5.Graphics">p5.Graphics</a> object to the main
       canvas using
 
       the <code>window</code> variable, as in
       <code>myShader.copyToContext(window)</code>.</p>
 
-      <p>Note: A <a href="/p5.js-website/reference/p5/p5.Shader">p5.Shader</a> object created
+      <p>Note: A <a href="/reference/p5/p5.Shader">p5.Shader</a> object created
       with
 
-      <a href="/p5.js-website/reference/p5/createShader">createShader()</a>,
+      <a href="/reference/p5/createShader/">createShader()</a>,
 
-      <a href="/p5.js-website/reference/p5/createFilterShader">createFilterShader()</a>, or
+      <a href="/reference/p5/createFilterShader/">createFilterShader()</a>, or
 
-      <a href="/p5.js-website/reference/p5/loadShader">loadShader()</a>
+      <a href="/reference/p5/loadShader/">loadShader()</a>
 
       can be used directly with a <a
-      href="/p5.js-website/reference/p5/p5.Framebuffer">p5.Framebuffer</a>
+      href="/reference/p5/p5.Framebuffer">p5.Framebuffer</a>
 
       object created with
 
-      <a href="/p5.js-website/reference/p5/createFramebuffer">createFramebuffer()</a>. Both
+      <a href="/reference/p5/createFramebuffer/">createFramebuffer()</a>. Both
       objects
 
       have the same context as the main canvas.</p>

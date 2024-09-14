@@ -5,10 +5,10 @@ submodule: Material
 file: src/webgl/material.js
 description: >
   <p>Get the shader used by <a
-  href="/p5.js-website/reference/p5/normalMaterial"><code>normalMaterial()</code></a>.</p>
+  href="/reference/p5/normalMaterial/"><code>normalMaterial()</code></a>.</p>
 
   <p>You can call <a
-  href="/p5.js-website/reference/p5.Shader/modify"><code>normalShader().modify()</code></a>
+  href="/reference/p5.Shader/modify/"><code>normalShader().modify()</code></a>
 
   and change any of the following hooks:</p>
 
@@ -132,7 +132,7 @@ description: >
   hooks and
 
   their default implementations.</p>
-line: 1193
+line: 1197
 isConstructor: false
 itemtype: method
 example:
@@ -145,7 +145,9 @@ example:
     function setup() {
       createCanvas(200, 200, WEBGL);
       myShader = normalShader().modify({
-        declarations: 'uniform float time;',
+        uniforms: {
+          'float time': () => millis()
+        },
         'vec3 getWorldPosition': `(vec3 pos) {
           pos.y += 20. * sin(time * 0.001 + pos.x * 0.05);
           return pos;
@@ -156,7 +158,6 @@ example:
     function draw() {
       background(255);
       shader(myShader);
-      myShader.setUniform('time', millis());
       noStroke();
       sphere(50);
     }
@@ -200,6 +201,7 @@ return:
   description: The `normalMaterial` shader
   type: p5.Shader
 chainable: false
+beta: true
 ---
 
 

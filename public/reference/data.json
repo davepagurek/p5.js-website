@@ -28079,16 +28079,17 @@
         },
         {
             "file": "src/scripts/parsers/in/p5.js/src/webgl/material.js",
-            "line": 884,
+            "line": 886,
             "description": "<p>Get the default shader used with lights, materials,\nand textures.</p>\n<p>You can call <a href=\"#/p5.Shader/modify\"><code>materialShader().modify()</code></a>\nand change any of the following hooks:</p>\n<table>\n<tr><th>Hook</th><th>Description</th></tr>\n<tr><td>\n\n<p><code>void beforeVertex</code></p>\n</td><td>\n\n<p>Called at the start of the vertex shader.</p>\n</td></tr>\n<tr><td>\n\n<p><code>vec3 getLocalPosition</code></p>\n</td><td>\n\n<p>Update the position of vertices before transforms are applied. It takes in <code>vec3 position</code> and must return a modified version.</p>\n</td></tr>\n<tr><td>\n\n<p><code>vec3 getWorldPosition</code></p>\n</td><td>\n\n<p>Update the position of vertices after transforms are applied. It takes in <code>vec3 position</code> and pust return a modified version.</p>\n</td></tr>\n<tr><td>\n\n<p><code>vec3 getLocalNormal</code></p>\n</td><td>\n\n<p>Update the normal before transforms are applied. It takes in <code>vec3 normal</code> and must return a modified version.</p>\n</td></tr>\n<tr><td>\n\n<p><code>vec3 getWorldNormal</code></p>\n</td><td>\n\n<p>Update the normal after transforms are applied. It takes in <code>vec3 normal</code> and must return a modified version.</p>\n</td></tr>\n<tr><td>\n\n<p><code>vec2 getUV</code></p>\n</td><td>\n\n<p>Update the texture coordinates. It takes in <code>vec2 uv</code> and must return a modified version.</p>\n</td></tr>\n<tr><td>\n\n<p><code>vec4 getVertexColor</code></p>\n</td><td>\n\n<p>Update the color of each vertex. It takes in a <code>vec4 color</code> and must return a modified version.</p>\n</td></tr>\n<tr><td>\n\n<p><code>void afterVertex</code></p>\n</td><td>\n\n<p>Called at the end of the vertex shader.</p>\n</td></tr>\n<tr><td>\n\n<p><code>void beforeFragment</code></p>\n</td><td>\n\n<p>Called at the start of the fragment shader.</p>\n</td></tr>\n<tr><td>\n\n<p><code>Inputs getPixelInputs</code></p>\n</td><td>\n\n<p>Update the per-pixel inputs of the material. It takes in an <code>Inputs</code> struct, which includes:</p>\n<ul>\n<li><code>vec3 normal</code>, the direction pointing out of the surface</li>\n<li><code>vec2 texCoord</code>, a vector where <code>x</code> and <code>y</code> are between 0 and 1 describing the spot on a texture the pixel is mapped to, as a fraction of the texture size</li>\n<li><code>vec3 ambientLight</code>, the ambient light color on the vertex</li>\n<li><code>vec4 color</code>, the base material color of the pixel</li>\n<li><code>vec3 ambientMaterial</code>, the color of the pixel when affected by ambient light</li>\n<li><code>vec3 specularMaterial</code>, the color of the pixel when reflecting specular highlights</li>\n<li><code>vec3 emissiveMaterial</code>, the light color emitted by the pixel</li>\n<li><code>float shininess</code>, a number representing how sharp specular reflections should be, from 1 to infinity</li>\n<li><code>float metalness</code>, a number representing how mirrorlike the material should be, between 0 and 1\nThe struct can be modified and returned.</td></tr>\n<tr><td></li>\n</ul>\n<p><code>vec4 combineColors</code></p>\n</td><td>\n\n<p>Take in a <code>ColorComponents</code> struct containing all the different components of light, and combining them into\na single final color. The struct contains:</p>\n<ul>\n<li><code>vec3 baseColor</code>, the base color of the pixel</li>\n<li><code>float opacity</code>, the opacity between 0 and 1 that it should be drawn at</li>\n<li><code>vec3 ambientColor</code>, the color of the pixel when affected by ambient light</li>\n<li><code>vec3 specularColor</code>, the color of the pixel when affected by specular reflections</li>\n<li><code>vec3 diffuse</code>, the amount of diffused light hitting the pixel</li>\n<li><code>vec3 ambient</code>, the amount of ambient light hitting the pixel</li>\n<li><code>vec3 specular</code>, the amount of specular reflection hitting the pixel</li>\n<li><code>vec3 emissive</code>, the amount of light emitted by the pixel</li>\n</ul>\n</td></tr>\n<tr><td>\n\n<p><code>vec4 getFinalColor</code></p>\n</td><td>\n\n<p>Update the final color after mixing. It takes in a <code>vec4 color</code> and must return a modified version.</p>\n</td></tr>\n<tr><td>\n\n<p><code>void afterFragment</code></p>\n</td><td>\n\n<p>Called at the end of the fragment shader.</p>\n</td></tr>\n</table>\n\n<p>Most of the time, you will need to write your hooks in GLSL ES version 300. If you\nare using WebGL 1 instead of 2, write your hooks in GLSL ES 100 instead.</p>\n<p>Call <code>materialShader().inspectHooks()</code> to see all the possible hooks and\ntheir default implementations.</p>\n",
             "itemtype": "method",
             "name": "materialShader",
+            "beta": 1,
             "return": {
                 "description": "The material shader",
                 "type": "p5.Shader"
             },
             "example": [
-                "\n<div modernizr='webgl'>\n<code>\nlet myShader;\n\nfunction setup() {\n  createCanvas(200, 200, WEBGL);\n  myShader = materialShader().modify({\n    declarations: 'uniform float time;',\n    'vec3 getWorldPosition': `(vec3 pos) {\n      pos.y += 20.0 * sin(time * 0.001 + pos.x * 0.05);\n      return pos;\n    }`\n  });\n}\n\nfunction draw() {\n  background(255);\n  shader(myShader);\n  myShader.setUniform('time', millis());\n  lights();\n  noStroke();\n  fill('red');\n  sphere(50);\n}\n</code>\n</div>",
+                "\n<div modernizr='webgl'>\n<code>\nlet myShader;\n\nfunction setup() {\n  createCanvas(200, 200, WEBGL);\n  myShader = materialShader().modify({\n    uniforms: {\n      'float time': () => millis()\n    },\n    'vec3 getWorldPosition': `(vec3 pos) {\n      pos.y += 20.0 * sin(time * 0.001 + pos.x * 0.05);\n      return pos;\n    }`\n  });\n}\n\nfunction draw() {\n  background(255);\n  shader(myShader);\n  lights();\n  noStroke();\n  fill('red');\n  sphere(50);\n}\n</code>\n</div>",
                 "\n<div modernizr='webgl'>\n<code>\nlet myShader;\n\nfunction setup() {\n  createCanvas(200, 200, WEBGL);\n  myShader = materialShader().modify({\n    declarations: 'vec3 myNormal;',\n    'Inputs getPixelInputs': `(Inputs inputs) {\n      myNormal = inputs.normal;\n      return inputs;\n    }`,\n    'vec4 getFinalColor': `(vec4 color) {\n      return mix(\n        vec4(1.0, 1.0, 1.0, 1.0),\n        color,\n        abs(dot(myNormal, vec3(0.0, 0.0, 1.0)))\n      );\n    }`\n  });\n}\n\nfunction draw() {\n  background(255);\n  rotateY(millis() * 0.001);\n  shader(myShader);\n  lights();\n  noStroke();\n  fill('red');\n  torus(30);\n}\n</code>\n</div>",
                 "\n<div modernizr='webgl'>\n<code>\nlet myShader;\nlet environment;\n\nfunction preload() {\n  environment = loadImage('assets/outdoor_spheremap.jpg');\n}\n\nfunction setup() {\n  createCanvas(200, 200, WEBGL);\n  myShader = materialShader().modify({\n    'Inputs getPixelInputs': `(Inputs inputs) {\n      float factor =\n        sin(\n          inputs.texCoord.x * ${TWO_PI} +\n          inputs.texCoord.y * ${TWO_PI}\n        ) * 0.4 + 0.5;\n      inputs.shininess = mix(1., 100., factor);\n      inputs.metalness = factor;\n      return inputs;\n    }`\n  });\n}\n\nfunction draw() {\n  panorama(environment);\n  ambientLight(100);\n  imageLight(environment);\n  rotateY(millis() * 0.001);\n  shader(myShader);\n  noStroke();\n  fill(255);\n  specularMaterial(150);\n  sphere(50);\n}\n</code>\n</div>",
                 "\n<div modernizr='webgl'>\n<code>\nlet myShader;\n\nfunction setup() {\n  createCanvas(200, 200, WEBGL);\n  myShader = materialShader().modify({\n    'Inputs getPixelInputs': `(Inputs inputs) {\n      vec3 newNormal = inputs.normal;\n      // Simple bump mapping: adjust the normal based on position\n      newNormal.x += 0.2 * sin(\n          sin(\n            inputs.texCoord.y * ${TWO_PI} * 10.0 +\n            inputs.texCoord.x * ${TWO_PI} * 25.0\n          )\n        );\n      newNormal.y += 0.2 * sin(\n        sin(\n            inputs.texCoord.x * ${TWO_PI} * 10.0 +\n            inputs.texCoord.y * ${TWO_PI} * 25.0\n          )\n      );\n      inputs.normal = normalize(newNormal);\n      return inputs;\n    }`\n  });\n}\n\nfunction draw() {\n  background(255);\n  shader(myShader);\n  ambientLight(150);\n  pointLight(\n    255, 255, 255,\n    100*cos(frameCount*0.04), -50, 100*sin(frameCount*0.04)\n  );\n  noStroke();\n  fill('red');\n  shininess(200);\n  specularMaterial(255);\n  sphere(50);\n}\n</code>\n</div>"
@@ -28099,16 +28100,17 @@
         },
         {
             "file": "src/scripts/parsers/in/p5.js/src/webgl/material.js",
-            "line": 1193,
+            "line": 1197,
             "description": "<p>Get the shader used by <a href=\"#/p5/normalMaterial\"><code>normalMaterial()</code></a>.</p>\n<p>You can call <a href=\"#/p5.Shader/modify\"><code>normalShader().modify()</code></a>\nand change any of the following hooks:</p>\n<table>\n<thead>\n<tr>\n<th>Hook</th>\n<th>Description</th>\n</tr>\n</thead>\n<tbody><tr>\n<td><code>void beforeVertex</code></td>\n<td>Called at the start of the vertex shader.</td>\n</tr>\n<tr>\n<td><code>vec3 getLocalPosition</code></td>\n<td>Update the position of vertices before transforms are applied. It takes in <code>vec3 position</code> and must return a modified version.</td>\n</tr>\n<tr>\n<td><code>vec3 getWorldPosition</code></td>\n<td>Update the position of vertices after transforms are applied. It takes in <code>vec3 position</code> and pust return a modified version.</td>\n</tr>\n<tr>\n<td><code>vec3 getLocalNormal</code></td>\n<td>Update the normal before transforms are applied. It takes in <code>vec3 normal</code> and must return a modified version.</td>\n</tr>\n<tr>\n<td><code>vec3 getWorldNormal</code></td>\n<td>Update the normal after transforms are applied. It takes in <code>vec3 normal</code> and must return a modified version.</td>\n</tr>\n<tr>\n<td><code>vec2 getUV</code></td>\n<td>Update the texture coordinates. It takes in <code>vec2 uv</code> and must return a modified version.</td>\n</tr>\n<tr>\n<td><code>vec4 getVertexColor</code></td>\n<td>Update the color of each vertex. It takes in a <code>vec4 color</code> and must return a modified version.</td>\n</tr>\n<tr>\n<td><code>void afterVertex</code></td>\n<td>Called at the end of the vertex shader.</td>\n</tr>\n<tr>\n<td><code>void beforeFragment</code></td>\n<td>Called at the start of the fragment shader.</td>\n</tr>\n<tr>\n<td><code>vec4 getFinalColor</code></td>\n<td>Update the final color after mixing. It takes in a <code>vec4 color</code> and must return a modified version.</td>\n</tr>\n<tr>\n<td><code>void afterFragment</code></td>\n<td>Called at the end of the fragment shader.</td>\n</tr>\n</tbody></table>\n<p>Most of the time, you will need to write your hooks in GLSL ES version 300. If you\nare using WebGL 1 instead of 2, write your hooks in GLSL ES 100 instead.</p>\n<p>Call <code>normalShader().inspectHooks()</code> to see all the possible hooks and\ntheir default implementations.</p>\n",
             "itemtype": "method",
             "name": "normalShader",
+            "beta": 1,
             "return": {
                 "description": "The `normalMaterial` shader",
                 "type": "p5.Shader"
             },
             "example": [
-                "\n<div modernizr='webgl'>\n<code>\nlet myShader;\n\nfunction setup() {\n  createCanvas(200, 200, WEBGL);\n  myShader = normalShader().modify({\n    declarations: 'uniform float time;',\n    'vec3 getWorldPosition': `(vec3 pos) {\n      pos.y += 20. * sin(time * 0.001 + pos.x * 0.05);\n      return pos;\n    }`\n  });\n}\n\nfunction draw() {\n  background(255);\n  shader(myShader);\n  myShader.setUniform('time', millis());\n  noStroke();\n  sphere(50);\n}\n</code>\n</div>",
+                "\n<div modernizr='webgl'>\n<code>\nlet myShader;\n\nfunction setup() {\n  createCanvas(200, 200, WEBGL);\n  myShader = normalShader().modify({\n    uniforms: {\n      'float time': () => millis()\n    },\n    'vec3 getWorldPosition': `(vec3 pos) {\n      pos.y += 20. * sin(time * 0.001 + pos.x * 0.05);\n      return pos;\n    }`\n  });\n}\n\nfunction draw() {\n  background(255);\n  shader(myShader);\n  noStroke();\n  sphere(50);\n}\n</code>\n</div>",
                 "\n<div modernizr='webgl'>\n<code>\nlet myShader;\n\nfunction setup() {\n  createCanvas(200, 200, WEBGL);\n  myShader = normalShader().modify({\n    'vec3 getWorldNormal': '(vec3 normal) { return abs(normal); }',\n    'vec4 getFinalColor': `(vec4 color) {\n      // Map the r, g, and b values of the old normal to new colors\n      // instead of just red, green, and blue:\n      vec3 newColor =\n        color.r * vec3(89.0, 240.0, 232.0) / 255.0 +\n        color.g * vec3(240.0, 237.0, 89.0) / 255.0 +\n        color.b * vec3(205.0, 55.0, 222.0) / 255.0;\n      newColor = newColor / (color.r + color.g + color.b);\n      return vec4(newColor, 1.0) * color.a;\n    }`\n  });\n}\n\nfunction draw() {\n  background(255);\n  shader(myShader);\n  noStroke();\n  rotateX(frameCount * 0.01);\n  rotateY(frameCount * 0.015);\n  box(100);\n}\n</code>\n</div>"
             ],
             "class": "p5",
@@ -28117,16 +28119,17 @@
         },
         {
             "file": "src/scripts/parsers/in/p5.js/src/webgl/material.js",
-            "line": 1286,
+            "line": 1292,
             "description": "<p>Get the shader used when no lights or materials are applied.</p>\n<p>You can call <a href=\"#/p5.Shader/modify\"><code>colorShader().modify()</code></a>\nand change any of the following hooks:</p>\n<table>\n<thead>\n<tr>\n<th>Hook</th>\n<th>Description</th>\n</tr>\n</thead>\n<tbody><tr>\n<td><code>void beforeVertex</code></td>\n<td>Called at the start of the vertex shader.</td>\n</tr>\n<tr>\n<td><code>vec3 getLocalPosition</code></td>\n<td>Update the position of vertices before transforms are applied. It takes in <code>vec3 position</code> and must return a modified version.</td>\n</tr>\n<tr>\n<td><code>vec3 getWorldPosition</code></td>\n<td>Update the position of vertices after transforms are applied. It takes in <code>vec3 position</code> and pust return a modified version.</td>\n</tr>\n<tr>\n<td><code>vec3 getLocalNormal</code></td>\n<td>Update the normal before transforms are applied. It takes in <code>vec3 normal</code> and must return a modified version.</td>\n</tr>\n<tr>\n<td><code>vec3 getWorldNormal</code></td>\n<td>Update the normal after transforms are applied. It takes in <code>vec3 normal</code> and must return a modified version.</td>\n</tr>\n<tr>\n<td><code>vec2 getUV</code></td>\n<td>Update the texture coordinates. It takes in <code>vec2 uv</code> and must return a modified version.</td>\n</tr>\n<tr>\n<td><code>vec4 getVertexColor</code></td>\n<td>Update the color of each vertex. It takes in a <code>vec4 color</code> and must return a modified version.</td>\n</tr>\n<tr>\n<td><code>void afterVertex</code></td>\n<td>Called at the end of the vertex shader.</td>\n</tr>\n<tr>\n<td><code>void beforeFragment</code></td>\n<td>Called at the start of the fragment shader.</td>\n</tr>\n<tr>\n<td><code>vec4 getFinalColor</code></td>\n<td>Update the final color after mixing. It takes in a <code>vec4 color</code> and must return a modified version.</td>\n</tr>\n<tr>\n<td><code>void afterFragment</code></td>\n<td>Called at the end of the fragment shader.</td>\n</tr>\n</tbody></table>\n<p>Most of the time, you will need to write your hooks in GLSL ES version 300. If you\nare using WebGL 1 instead of 2, write your hooks in GLSL ES 100 instead.</p>\n<p>Call <code>colorShader().inspectHooks()</code> to see all the possible hooks and\ntheir default implementations.</p>\n",
             "itemtype": "method",
             "name": "colorShader",
+            "beta": 1,
             "return": {
                 "description": "The color shader",
                 "type": "p5.Shader"
             },
             "example": [
-                "\n<div modernizr='webgl'>\n<code>\nlet myShader;\n\nfunction setup() {\n  createCanvas(200, 200, WEBGL);\n  myShader = colorShader().modify({\n    declarations: 'uniform float time;',\n    'vec3 getWorldPosition': `(vec3 pos) {\n      pos.y += 20. * sin(time * 0.001 + pos.x * 0.05);\n      return pos;\n    }`\n  });\n}\n\nfunction draw() {\n  background(255);\n  shader(myShader);\n  myShader.setUniform('time', millis());\n  noStroke();\n  fill('red');\n  circle(0, 0, 50);\n}\n</code>\n</div>"
+                "\n<div modernizr='webgl'>\n<code>\nlet myShader;\n\nfunction setup() {\n  createCanvas(200, 200, WEBGL);\n  myShader = colorShader().modify({\n    uniforms: {\n      'float time': () => millis()\n    },\n    'vec3 getWorldPosition': `(vec3 pos) {\n      pos.y += 20. * sin(time * 0.001 + pos.x * 0.05);\n      return pos;\n    }`\n  });\n}\n\nfunction draw() {\n  background(255);\n  shader(myShader);\n  noStroke();\n  fill('red');\n  circle(0, 0, 50);\n}\n</code>\n</div>"
             ],
             "class": "p5",
             "module": "3D",
@@ -28134,18 +28137,19 @@
         },
         {
             "file": "src/scripts/parsers/in/p5.js/src/webgl/material.js",
-            "line": 1347,
+            "line": 1355,
             "description": "<p>Get the shader used when drawing the strokes of shapes.</p>\n<p>You can call <a href=\"#/p5.Shader/modify\"><code>strokeShader().modify()</code></a>\nand change any of the following hooks:</p>\n<table>\n<tr><th>Hook</th><th>Description</th></tr>\n<tr><td>\n\n<p><code>void beforeVertex</code></p>\n</td><td>\n\n<p>Called at the start of the vertex shader.</p>\n</td></tr>\n<tr><td>\n\n<p><code>vec3 getLocalPosition</code></p>\n</td><td>\n\n<p>Update the position of vertices before transforms are applied. It takes in <code>vec3 position</code> and must return a modified version.</p>\n</td></tr>\n<tr><td>\n\n<p><code>vec3 getWorldPosition</code></p>\n</td><td>\n\n<p>Update the position of vertices after transforms are applied. It takes in <code>vec3 position</code> and pust return a modified version.</p>\n</td></tr>\n<tr><td>\n\n<p><code>float getStrokeWeight</code></p>\n</td><td>\n\n<p>Update the stroke weight. It takes in <code>float weight</code> and pust return a modified version.</p>\n</td></tr>\n<tr><td>\n\n<p><code>vec2 getLineCenter</code></p>\n</td><td>\n\n<p>Update the center of the line. It takes in <code>vec2 center</code> and must return a modified version.</p>\n</td></tr>\n<tr><td>\n\n<p><code>vec2 getLinePosition</code></p>\n</td><td>\n\n<p>Update the position of each vertex on the edge of the line. It takes in <code>vec2 position</code> and must return a modified version.</p>\n</td></tr>\n<tr><td>\n\n<p><code>vec4 getVertexColor</code></p>\n</td><td>\n\n<p>Update the color of each vertex. It takes in a <code>vec4 color</code> and must return a modified version.</p>\n</td></tr>\n<tr><td>\n\n<p><code>void afterVertex</code></p>\n</td><td>\n\n<p>Called at the end of the vertex shader.</p>\n</td></tr>\n<tr><td>\n\n<p><code>void beforeFragment</code></p>\n</td><td>\n\n<p>Called at the start of the fragment shader.</p>\n</td></tr>\n<tr><td>\n\n<p><code>Inputs getPixelInputs</code></p>\n</td><td>\n\n<p>Update the inputs to the shader. It takes in a struct <code>Inputs inputs</code>, which includes:</p>\n<ul>\n<li><code>vec4 color</code>, the color of the stroke</li>\n<li><code>vec2 tangent</code>, the direction of the stroke in screen space</li>\n<li><code>vec2 center</code>, the coordinate of the center of the stroke in screen space p5.js pixels</li>\n<li><code>vec2 position</code>, the coordinate of the current pixel in screen space p5.js pixels</li>\n<li><code>float strokeWeight</code>, the thickness of the stroke in p5.js pixels</li>\n</ul>\n</td></tr>\n<tr><td>\n\n<p><code>bool shouldDiscard</code></p>\n</td><td>\n\n<p>Caps and joins are made by discarded pixels in the fragment shader to carve away unwanted areas. Use this to change this logic. It takes in a <code>bool willDiscard</code> and must return a modified version.</p>\n</td></tr>\n<tr><td>\n\n<p><code>vec4 getFinalColor</code></p>\n</td><td>\n\n<p>Update the final color after mixing. It takes in a <code>vec4 color</code> and must return a modified version.</p>\n</td></tr>\n<tr><td>\n\n<p><code>void afterFragment</code></p>\n</td><td>\n\n<p>Called at the end of the fragment shader.</p>\n</td></tr>\n</table>\n\n<p>Most of the time, you will need to write your hooks in GLSL ES version 300. If you\nare using WebGL 1 instead of 2, write your hooks in GLSL ES 100 instead.</p>\n<p>Call <code>strokeShader().inspectHooks()</code> to see all the possible hooks and\ntheir default implementations.</p>\n",
             "itemtype": "method",
             "name": "strokeShader",
+            "beta": 1,
             "return": {
                 "description": "The stroke shader",
                 "type": "p5.Shader"
             },
             "example": [
                 "\n<div modernizr='webgl'>\n<code>\nlet myShader;\n\nfunction setup() {\n  createCanvas(200, 200, WEBGL);\n  myShader = strokeShader().modify({\n    'Inputs getPixelInputs': `(Inputs inputs) {\n      float opacity = 1.0 - smoothstep(\n        0.0,\n        15.0,\n        length(inputs.position - inputs.center)\n      );\n      inputs.color *= opacity;\n      return inputs;\n    }`\n  });\n}\n\nfunction draw() {\n  background(255);\n  shader(myShader);\n  strokeWeight(30);\n  line(\n    -width/3,\n    sin(millis()*0.001) * height/4,\n    width/3,\n    sin(millis()*0.001 + 1) * height/4\n  );\n}\n</code>\n</div>",
-                "\n<div modernizr='webgl'>\n<code>\nlet myShader;\n\nfunction setup() {\n  createCanvas(200, 200, WEBGL);\n  myShader = strokeShader().modify({\n    declarations: `\n      uniform float time;\n      vec3 myPosition;\n    `,\n    'vec3 getWorldPosition': `(vec3 pos) {\n      myPosition = pos;\n      return pos;\n    }`,\n    'float getStrokeWeight': `(float w) {\n      // Add a somewhat random offset to the weight\n      // that varies based on position and time\n      float scale = 0.8 + 0.2*sin(10.0 * sin(\n        floor(time/250.) +\n        myPosition.x*0.01 +\n        myPosition.y*0.01\n      ));\n      return w * scale;\n    }`\n  });\n}\n\nfunction draw() {\n  background(255);\n  shader(myShader);\n  myShader.setUniform('time', millis());\n  strokeWeight(10);\n  beginShape();\n  for (let i = 0; i <= 50; i++) {\n    let r = map(i, 0, 50, 0, width/3);\n    let x = r*cos(i*0.2);\n    let y = r*sin(i*0.2);\n    vertex(x, y);\n  }\n  endShape();\n}\n</code>\n</div>",
-                "\n<div modernizr='webgl'>\n<code>\nlet myShader;\n\nfunction setup() {\n  createCanvas(200, 200, WEBGL);\n  myShader = strokeShader().modify({\n    declarations: `\n      float random(vec2 p) {\n        vec3 p3  = fract(vec3(p.xyx) * .1031);\n        p3 += dot(p3, p3.yzx + 33.33);\n        return fract((p3.x + p3.y) * p3.z);\n      }\n    `,\n    'Inputs getPixelInputs': `(Inputs inputs) {\n      // Replace alpha in the color with dithering by\n      // randomly setting pixel colors to 0 based on opacity\n      float a = inputs.color.a;\n      inputs.color.a = 1.0;\n      inputs.color *= random(inputs.position.xy) > a ? 0.0 : 1.0;\n      return inputs;\n    }`\n  });\n}\n\nfunction draw() {\n  background(255);\n  shader(myShader);\n  myShader.setUniform('time', millis());\n  strokeWeight(10);\n  beginShape();\n  for (let i = 0; i <= 50; i++) {\n    stroke(\n      0,\n      255\n        * map(i, 0, 20, 0, 1, true)\n        * map(i, 30, 50, 1, 0, true)\n    );\n    vertex(\n      map(i, 0, 50, -1, 1) * width/3,\n      50 * sin(i/10 + frameCount/100)\n    );\n  }\n  endShape();\n}\n</code>\n</div>"
+                "\n<div modernizr='webgl'>\n<code>\nlet myShader;\n\nfunction setup() {\n  createCanvas(200, 200, WEBGL);\n  myShader = strokeShader().modify({\n    uniforms: {\n      'float time': () => millis()\n    },\n    declarations: 'vec3 myPosition;',\n    'vec3 getWorldPosition': `(vec3 pos) {\n      myPosition = pos;\n      return pos;\n    }`,\n    'float getStrokeWeight': `(float w) {\n      // Add a somewhat random offset to the weight\n      // that varies based on position and time\n      float scale = 0.8 + 0.2*sin(10.0 * sin(\n        floor(time/250.) +\n        myPosition.x*0.01 +\n        myPosition.y*0.01\n      ));\n      return w * scale;\n    }`\n  });\n}\n\nfunction draw() {\n  background(255);\n  shader(myShader);\n  myShader.setUniform('time', millis());\n  strokeWeight(10);\n  beginShape();\n  for (let i = 0; i <= 50; i++) {\n    let r = map(i, 0, 50, 0, width/3);\n    let x = r*cos(i*0.2);\n    let y = r*sin(i*0.2);\n    vertex(x, y);\n  }\n  endShape();\n}\n</code>\n</div>",
+                "\n<div modernizr='webgl'>\n<code>\nlet myShader;\n\nfunction setup() {\n  createCanvas(200, 200, WEBGL);\n  myShader = strokeShader().modify({\n    'float random': `(vec2 p) {\n      vec3 p3  = fract(vec3(p.xyx) * .1031);\n      p3 += dot(p3, p3.yzx + 33.33);\n      return fract((p3.x + p3.y) * p3.z);\n    }`,\n    'Inputs getPixelInputs': `(Inputs inputs) {\n      // Replace alpha in the color with dithering by\n      // randomly setting pixel colors to 0 based on opacity\n      float a = inputs.color.a;\n      inputs.color.a = 1.0;\n      inputs.color *= random(inputs.position.xy) > a ? 0.0 : 1.0;\n      return inputs;\n    }`\n  });\n}\n\nfunction draw() {\n  background(255);\n  shader(myShader);\n  strokeWeight(10);\n  beginShape();\n  for (let i = 0; i <= 50; i++) {\n    stroke(\n      0,\n      255\n        * map(i, 0, 20, 0, 1, true)\n        * map(i, 30, 50, 1, 0, true)\n    );\n    vertex(\n      map(i, 0, 50, -1, 1) * width/3,\n      50 * sin(i/10 + frameCount/100)\n    );\n  }\n  endShape();\n}\n</code>\n</div>"
             ],
             "class": "p5",
             "module": "3D",
@@ -28153,7 +28157,7 @@
         },
         {
             "file": "src/scripts/parsers/in/p5.js/src/webgl/material.js",
-            "line": 1622,
+            "line": 1628,
             "description": "<p>Restores the default shaders.</p>\n<p><code>resetShader()</code> deactivates any shaders previously applied by\n<a href=\"#/p5/shader\">shader()</a>.</p>\n<p>Note: Shaders can only be used in WebGL mode.</p>\n",
             "itemtype": "method",
             "name": "resetShader",
@@ -28167,7 +28171,7 @@
         },
         {
             "file": "src/scripts/parsers/in/p5.js/src/webgl/material.js",
-            "line": 1710,
+            "line": 1716,
             "description": "<p>Sets the texture that will be used on shapes.</p>\n<p>A texture is like a skin that wraps around a shape. <code>texture()</code> works with\nbuilt-in shapes, such as <a href=\"#/p5/square\">square()</a> and\n<a href=\"#/p5/sphere\">sphere()</a>, and custom shapes created with\nfunctions such as <a href=\"#/p5/buildGeometry\">buildGeometry()</a>. To\ntexture a geometry created with <a href=\"#/p5/beginShape\">beginShape()</a>,\nuv coordinates must be passed to each\n<a href=\"#/p5/vertex\">vertex()</a> call.</p>\n<p>The parameter, <code>tex</code>, is the texture to apply. <code>texture()</code> can use a range\nof sources including images, videos, and offscreen renderers such as\n<a href=\"#/p5.Graphics\">p5.Graphics</a> and\n<a href=\"#/p5.Framebuffer\">p5.Framebuffer</a> objects.</p>\n<p>To texture a geometry created with <a href=\"#/p5/beginShape\">beginShape()</a>,\nyou will need to specify uv coordinates in <a href=\"#/p5/vertex\">vertex()</a>.</p>\n<p>Note: <code>texture()</code> can only be used in WebGL mode.</p>\n",
             "itemtype": "method",
             "name": "texture",
@@ -28188,7 +28192,7 @@
         },
         {
             "file": "src/scripts/parsers/in/p5.js/src/webgl/material.js",
-            "line": 1897,
+            "line": 1903,
             "description": "<p>Changes the coordinate system used for textures when they’re applied to\ncustom shapes.</p>\n<p>In order for <a href=\"#/p5/texture\">texture()</a> to work, a shape needs a\nway to map the points on its surface to the pixels in an image. Built-in\nshapes such as <a href=\"#/p5/rect\">rect()</a> and\n<a href=\"#/p5/box\">box()</a> already have these texture mappings based on\ntheir vertices. Custom shapes created with\n<a href=\"#/p5/vertex\">vertex()</a> require texture mappings to be passed as\nuv coordinates.</p>\n<p>Each call to <a href=\"#/p5/vertex\">vertex()</a> must include 5 arguments,\nas in <code>vertex(x, y, z, u, v)</code>, to map the vertex at coordinates <code>(x, y, z)</code>\nto the pixel at coordinates <code>(u, v)</code> within an image. For example, the\ncorners of a rectangular image are mapped to the corners of a rectangle by default:</p>\n<code>\n// Apply the image as a texture.\ntexture(img);\n\n<p>// Draw the rectangle.\nrect(0, 0, 30, 50);\n</code></p>\n<p>If the image in the code snippet above has dimensions of 300 x 500 pixels,\nthe same result could be achieved as follows:</p>\n<code>\n// Apply the image as a texture.\ntexture(img);\n\n<p>// Draw the rectangle.\nbeginShape();</p>\n<p>// Top-left.\n// u: 0, v: 0\nvertex(0, 0, 0, 0, 0);</p>\n<p>// Top-right.\n// u: 300, v: 0\nvertex(30, 0, 0, 300, 0);</p>\n<p>// Bottom-right.\n// u: 300, v: 500\nvertex(30, 50, 0, 300, 500);</p>\n<p>// Bottom-left.\n// u: 0, v: 500\nvertex(0, 50, 0, 0, 500);</p>\n<p>endShape();\n</code></p>\n<p><code>textureMode()</code> changes the coordinate system for uv coordinates.</p>\n<p>The parameter, <code>mode</code>, accepts two possible constants. If <code>NORMAL</code> is\npassed, as in <code>textureMode(NORMAL)</code>, then the texture’s uv coordinates can\nbe provided in the range 0 to 1 instead of the image’s dimensions. This can\nbe helpful for using the same code for multiple images of different sizes.\nFor example, the code snippet above could be rewritten as follows:</p>\n<code>\n// Set the texture mode to use normalized coordinates.\ntextureMode(NORMAL);\n\n<p>// Apply the image as a texture.\ntexture(img);</p>\n<p>// Draw the rectangle.\nbeginShape();</p>\n<p>// Top-left.\n// u: 0, v: 0\nvertex(0, 0, 0, 0, 0);</p>\n<p>// Top-right.\n// u: 1, v: 0\nvertex(30, 0, 0, 1, 0);</p>\n<p>// Bottom-right.\n// u: 1, v: 1\nvertex(30, 50, 0, 1, 1);</p>\n<p>// Bottom-left.\n// u: 0, v: 1\nvertex(0, 50, 0, 0, 1);</p>\n<p>endShape();\n</code></p>\n<p>By default, <code>mode</code> is <code>IMAGE</code>, which scales uv coordinates to the\ndimensions of the image. Calling <code>textureMode(IMAGE)</code> applies the default.</p>\n<p>Note: <code>textureMode()</code> can only be used in WebGL mode.</p>\n",
             "itemtype": "method",
             "name": "textureMode",
@@ -28208,7 +28212,7 @@
         },
         {
             "file": "src/scripts/parsers/in/p5.js/src/webgl/material.js",
-            "line": 2076,
+            "line": 2082,
             "description": "<p>Changes the way textures behave when a shape’s uv coordinates go beyond the\ntexture.</p>\n<p>In order for <a href=\"#/p5/texture\">texture()</a> to work, a shape needs a\nway to map the points on its surface to the pixels in an image. Built-in\nshapes such as <a href=\"#/p5/rect\">rect()</a> and\n<a href=\"#/p5/box\">box()</a> already have these texture mappings based on\ntheir vertices. Custom shapes created with\n<a href=\"#/p5/vertex\">vertex()</a> require texture mappings to be passed as\nuv coordinates.</p>\n<p>Each call to <a href=\"#/p5/vertex\">vertex()</a> must include 5 arguments,\nas in <code>vertex(x, y, z, u, v)</code>, to map the vertex at coordinates <code>(x, y, z)</code>\nto the pixel at coordinates <code>(u, v)</code> within an image. For example, the\ncorners of a rectangular image are mapped to the corners of a rectangle by default:</p>\n<pre><code class=\"language-js\">// Apply the image as a texture.\ntexture(img);\n\n// Draw the rectangle.\nrect(0, 0, 30, 50);\n</code></pre>\n<p>If the image in the code snippet above has dimensions of 300 x 500 pixels,\nthe same result could be achieved as follows:</p>\n<pre><code class=\"language-js\">// Apply the image as a texture.\ntexture(img);\n\n// Draw the rectangle.\nbeginShape();\n\n// Top-left.\n// u: 0, v: 0\nvertex(0, 0, 0, 0, 0);\n\n// Top-right.\n// u: 300, v: 0\nvertex(30, 0, 0, 300, 0);\n\n// Bottom-right.\n// u: 300, v: 500\nvertex(30, 50, 0, 300, 500);\n\n// Bottom-left.\n// u: 0, v: 500\nvertex(0, 50, 0, 0, 500);\n\nendShape();\n</code></pre>\n<p><code>textureWrap()</code> controls how textures behave when their uv's go beyond the\ntexture. Doing so can produce interesting visual effects such as tiling.\nFor example, the custom shape above could have u-coordinates are greater\nthan the image’s width:</p>\n<pre><code class=\"language-js\">// Apply the image as a texture.\ntexture(img);\n\n// Draw the rectangle.\nbeginShape();\nvertex(0, 0, 0, 0, 0);\n\n// Top-right.\n// u: 600\nvertex(30, 0, 0, 600, 0);\n\n// Bottom-right.\n// u: 600\nvertex(30, 50, 0, 600, 500);\n\nvertex(0, 50, 0, 0, 500);\nendShape();\n</code></pre>\n<p>The u-coordinates of 600 are greater than the texture image’s width of 300.\nThis creates interesting possibilities.</p>\n<p>The first parameter, <code>wrapX</code>, accepts three possible constants. If <code>CLAMP</code>\nis passed, as in <code>textureWrap(CLAMP)</code>, the pixels at the edge of the\ntexture will extend to the shape’s edges. If <code>REPEAT</code> is passed, as in\n<code>textureWrap(REPEAT)</code>, the texture will tile repeatedly until reaching the\nshape’s edges. If <code>MIRROR</code> is passed, as in <code>textureWrap(MIRROR)</code>, the\ntexture will tile repeatedly until reaching the shape’s edges, flipping\nits orientation between tiles. By default, textures <code>CLAMP</code>.</p>\n<p>The second parameter, <code>wrapY</code>, is optional. It accepts the same three\nconstants, <code>CLAMP</code>, <code>REPEAT</code>, and <code>MIRROR</code>. If one of these constants is\npassed, as in <code>textureWRAP(MIRROR, REPEAT)</code>, then the texture will <code>MIRROR</code>\nhorizontally and <code>REPEAT</code> vertically. By default, <code>wrapY</code> will be set to\nthe same value as <code>wrapX</code>.</p>\n<p>Note: <code>textureWrap()</code> can only be used in WebGL mode.</p>\n",
             "itemtype": "method",
             "name": "textureWrap",
@@ -28234,7 +28238,7 @@
         },
         {
             "file": "src/scripts/parsers/in/p5.js/src/webgl/material.js",
-            "line": 2359,
+            "line": 2365,
             "description": "<p>Sets the current material as a normal material.</p>\n<p>A normal material sets surfaces facing the x-axis to red, those facing the\ny-axis to green, and those facing the z-axis to blue. Normal material isn't\naffected by light. It’s often used as a placeholder material when debugging.</p>\n<p>Note: <code>normalMaterial()</code> can only be used in WebGL mode.</p>\n",
             "itemtype": "method",
             "name": "normalMaterial",
@@ -28248,7 +28252,7 @@
         },
         {
             "file": "src/scripts/parsers/in/p5.js/src/webgl/material.js",
-            "line": 2410,
+            "line": 2416,
             "description": "<p>Sets the ambient color of shapes’ surface material.</p>\n<p>The <code>ambientMaterial()</code> color sets the components of the\n<a href=\"#/p5/ambientLight\">ambientLight()</a> color that shapes will\nreflect. For example, calling <code>ambientMaterial(255, 255, 0)</code> would cause a\nshape to reflect red and green light, but not blue light.</p>\n<p><code>ambientMaterial()</code> can be called three ways with different parameters to\nset the material’s color.</p>\n<p>The first way to call <code>ambientMaterial()</code> has one parameter, <code>gray</code>.\nGrayscale values between 0 and 255, as in <code>ambientMaterial(50)</code>, can be\npassed to set the material’s color. Higher grayscale values make shapes\nappear brighter.</p>\n<p>The second way to call <code>ambientMaterial()</code> has one parameter, <code>color</code>. A\n<a href=\"#/p5.Color\">p5.Color</a> object, an array of color values, or a\nCSS color string, as in <code>ambientMaterial('magenta')</code>, can be passed to set\nthe material’s color.</p>\n<p>The third way to call <code>ambientMaterial()</code> has three parameters, <code>v1</code>, <code>v2</code>,\nand <code>v3</code>. RGB, HSB, or HSL values, as in <code>ambientMaterial(255, 0, 0)</code>, can\nbe passed to set the material’s colors. Color values will be interpreted\nusing the current <a href=\"#/p5/colorMode\">colorMode()</a>.</p>\n<p>Note: <code>ambientMaterial()</code> can only be used in WebGL mode.</p>\n",
             "itemtype": "method",
             "name": "ambientMaterial",
@@ -28261,7 +28265,7 @@
             "submodule": "Material",
             "overloads": [
                 {
-                    "line": 2410,
+                    "line": 2416,
                     "params": [
                         {
                             "name": "v1",
@@ -28282,7 +28286,7 @@
                     "chainable": 1
                 },
                 {
-                    "line": 2615,
+                    "line": 2621,
                     "params": [
                         {
                             "name": "gray",
@@ -28293,7 +28297,7 @@
                     "chainable": 1
                 },
                 {
-                    "line": 2621,
+                    "line": 2627,
                     "params": [
                         {
                             "name": "color",
@@ -28307,7 +28311,7 @@
         },
         {
             "file": "src/scripts/parsers/in/p5.js/src/webgl/material.js",
-            "line": 2641,
+            "line": 2647,
             "description": "<p>Sets the emissive color of shapes’ surface material.</p>\n<p>The <code>emissiveMaterial()</code> color sets a color shapes display at full\nstrength, regardless of lighting. This can give the appearance that a shape\nis glowing. However, emissive materials don’t actually emit light that\ncan affect surrounding objects.</p>\n<p><code>emissiveMaterial()</code> can be called three ways with different parameters to\nset the material’s color.</p>\n<p>The first way to call <code>emissiveMaterial()</code> has one parameter, <code>gray</code>.\nGrayscale values between 0 and 255, as in <code>emissiveMaterial(50)</code>, can be\npassed to set the material’s color. Higher grayscale values make shapes\nappear brighter.</p>\n<p>The second way to call <code>emissiveMaterial()</code> has one parameter, <code>color</code>. A\n<a href=\"#/p5.Color\">p5.Color</a> object, an array of color values, or a\nCSS color string, as in <code>emissiveMaterial('magenta')</code>, can be passed to set\nthe material’s color.</p>\n<p>The third way to call <code>emissiveMaterial()</code> has four parameters, <code>v1</code>, <code>v2</code>,\n<code>v3</code>, and <code>alpha</code>. <code>alpha</code> is optional. RGBA, HSBA, or HSLA values can be\npassed to set the material’s colors, as in <code>emissiveMaterial(255, 0, 0)</code> or\n<code>emissiveMaterial(255, 0, 0, 30)</code>. Color values will be interpreted using\nthe current <a href=\"#/p5/colorMode\">colorMode()</a>.</p>\n<p>Note: <code>emissiveMaterial()</code> can only be used in WebGL mode.</p>\n",
             "itemtype": "method",
             "name": "emissiveMaterial",
@@ -28320,7 +28324,7 @@
             "submodule": "Material",
             "overloads": [
                 {
-                    "line": 2641,
+                    "line": 2647,
                     "params": [
                         {
                             "name": "v1",
@@ -28347,7 +28351,7 @@
                     "chainable": 1
                 },
                 {
-                    "line": 2711,
+                    "line": 2717,
                     "params": [
                         {
                             "name": "gray",
@@ -28358,7 +28362,7 @@
                     "chainable": 1
                 },
                 {
-                    "line": 2717,
+                    "line": 2723,
                     "params": [
                         {
                             "name": "color",
@@ -28372,7 +28376,7 @@
         },
         {
             "file": "src/scripts/parsers/in/p5.js/src/webgl/material.js",
-            "line": 2737,
+            "line": 2743,
             "description": "<p>Sets the specular color of shapes’ surface material.</p>\n<p>The <code>specularMaterial()</code> color sets the components of light color that\nglossy coats on shapes will reflect. For example, calling\n<code>specularMaterial(255, 255, 0)</code> would cause a shape to reflect red and\ngreen light, but not blue light.</p>\n<p>Unlike <a href=\"#/p5/ambientMaterial\">ambientMaterial()</a>,\n<code>specularMaterial()</code> will reflect the full color of light sources including\n<a href=\"#/p5/directionalLight\">directionalLight()</a>,\n<a href=\"#/p5/pointLight\">pointLight()</a>,\nand <a href=\"#/p5/spotLight\">spotLight()</a>. This is what gives it shapes\ntheir \"shiny\" appearance. The material’s shininess can be controlled by the\n<a href=\"#/p5/shininess\">shininess()</a> function.</p>\n<p><code>specularMaterial()</code> can be called three ways with different parameters to\nset the material’s color.</p>\n<p>The first way to call <code>specularMaterial()</code> has one parameter, <code>gray</code>.\nGrayscale values between 0 and 255, as in <code>specularMaterial(50)</code>, can be\npassed to set the material’s color. Higher grayscale values make shapes\nappear brighter.</p>\n<p>The second way to call <code>specularMaterial()</code> has one parameter, <code>color</code>. A\n<a href=\"#/p5.Color\">p5.Color> object, an array of color values, or a CSS\ncolor string, as in <code>specularMaterial('magenta')</code>, can be passed to set the\nmaterial’s color.</p>\n<p>The third way to call <code>specularMaterial()</code> has four parameters, <code>v1</code>, <code>v2</code>,\n<code>v3</code>, and <code>alpha</code>. <code>alpha</code> is optional. RGBA, HSBA, or HSLA values can be\npassed to set the material’s colors, as in <code>specularMaterial(255, 0, 0)</code> or\n<code>specularMaterial(255, 0, 0, 30)</code>. Color values will be interpreted using\nthe current <a href=\"#/p5/colorMode\">colorMode()</a>.</p>\n",
             "itemtype": "method",
             "name": "specularMaterial",
@@ -28385,7 +28389,7 @@
             "submodule": "Material",
             "overloads": [
                 {
-                    "line": 2737,
+                    "line": 2743,
                     "params": [
                         {
                             "name": "gray",
@@ -28402,7 +28406,7 @@
                     "chainable": 1
                 },
                 {
-                    "line": 2960,
+                    "line": 2966,
                     "params": [
                         {
                             "name": "v1",
@@ -28429,7 +28433,7 @@
                     "chainable": 1
                 },
                 {
-                    "line": 2972,
+                    "line": 2978,
                     "params": [
                         {
                             "name": "color",
@@ -28443,7 +28447,7 @@
         },
         {
             "file": "src/scripts/parsers/in/p5.js/src/webgl/material.js",
-            "line": 2992,
+            "line": 2998,
             "description": "<p>Sets the amount of gloss (\"shininess\") of a\n<a href=\"#/p5/specularMaterial\">specularMaterial()</a>.</p>\n<p>Shiny materials focus reflected light more than dull materials.\n<code>shininess()</code> affects the way materials reflect light sources including\n<a href=\"#/p5/directionalLight\">directionalLight()</a>,\n<a href=\"#/p5/pointLight\">pointLight()</a>,\nand <a href=\"#/p5/spotLight\">spotLight()</a>.</p>\n<p>The parameter, <code>shine</code>, is a number that sets the amount of shininess.\n<code>shine</code> must be greater than 1, which is its default value.</p>\n",
             "itemtype": "method",
             "name": "shininess",
@@ -28464,7 +28468,7 @@
         },
         {
             "file": "src/scripts/parsers/in/p5.js/src/webgl/material.js",
-            "line": 3063,
+            "line": 3069,
             "description": "<p>Sets the amount of \"metalness\" of a\n<a href=\"#/p5/specularMaterial\">specularMaterial()</a>.</p>\n<p><code>metalness()</code> can make materials appear more metallic. It affects the way\nmaterials reflect light sources including\naffects the way materials reflect light sources including\n<a href=\"#/p5/directionalLight\">directionalLight()</a>,\n<a href=\"#/p5/pointLight\">pointLight()</a>,\n<a href=\"#/p5/spotLight\">spotLight()</a>, and\n<a href=\"#/p5/imageLight\">imageLight()</a>.</p>\n<p>The parameter, <code>metallic</code>, is a number that sets the amount of metalness.\n<code>metallic</code> must be greater than 1, which is its default value. Higher\nvalues, such as <code>metalness(100)</code>, make specular materials appear more\nmetallic.</p>\n",
             "itemtype": "method",
             "name": "metalness",
@@ -29875,7 +29879,7 @@
         },
         {
             "file": "src/scripts/parsers/in/p5.js/src/webgl/p5.Shader.js",
-            "line": 219,
+            "line": 233,
             "description": "<p>Shaders are written in <a href=\"https://developer.mozilla.org/en-US/docs/Games/Techniques/3D_on_the_web/GLSL_Shaders\">GLSL</a>, but\nthere are different versions of GLSL that it might be written in.</p>\n<p>Calling this method on a <code>p5.Shader</code> will return the GLSL version it uses, either <code>100 es</code> or <code>300 es</code>.\nWebGL 1 shaders will only use <code>100 es</code>, and WebGL 2 shaders may use either.</p>\n",
             "return": {
                 "description": "The GLSL version used by the shader.",
@@ -29887,20 +29891,22 @@
         },
         {
             "file": "src/scripts/parsers/in/p5.js/src/webgl/p5.Shader.js",
-            "line": 245,
-            "description": "<p>Logs the hooks available in this shader, and their current implementation.</p>\n<p>Each shader may let you override bits of its behavior. Each bit is called\na <em>hook.</em> A hook is either for the <em>vertex</em> shader, if it affects the\nposition of vertices, or in the <em>fragment</em> shader, if it affects the pixel\ncolor. This method logs those values to the console, letting you know what\nyou are able to use in a call to\n<a href=\"#/p5.Shader/modify\"><code>modify()</code></a>.</p>\n",
+            "line": 259,
+            "description": "<p>Logs the hooks available in this shader, and their current implementation.</p>\n<p>Each shader may let you override bits of its behavior. Each bit is called\na <em>hook.</em> A hook is either for the <em>vertex</em> shader, if it affects the\nposition of vertices, or in the <em>fragment</em> shader, if it affects the pixel\ncolor. This method logs those values to the console, letting you know what\nyou are able to use in a call to\n<a href=\"#/p5.Shader/modify\"><code>modify()</code></a>.</p>\n<p>For example, this shader will produce the following output:</p>\n<pre><code class=\"language-js\">myShader = materialShader().modify({\n  declarations: 'uniform float time;',\n  'vec3 getWorldPosition': `(vec3 pos) {\n    pos.y += 20. * sin(time * 0.001 + pos.x * 0.05);\n    return pos;\n  }`\n});\nmyShader.inspectHooks();\n</code></pre>\n<pre><code>==== Vertex shader hooks: ====\nvoid beforeVertex() {}\nvec3 getLocalPosition(vec3 position) { return position; }\n[MODIFIED] vec3 getWorldPosition(vec3 pos) {\n      pos.y += 20. * sin(time * 0.001 + pos.x * 0.05);\n      return pos;\n    }\nvec3 getLocalNormal(vec3 normal) { return normal; }\nvec3 getWorldNormal(vec3 normal) { return normal; }\nvec2 getUV(vec2 uv) { return uv; }\nvec4 getVertexColor(vec4 color) { return color; }\nvoid afterVertex() {}\n\n==== Fragment shader hooks: ====\nvoid beforeFragment() {}\nInputs getPixelInputs(Inputs inputs) { return inputs; }\nvec4 combineColors(ColorComponents components) {\n                vec4 color = vec4(0.);\n                color.rgb += components.diffuse * components.baseColor;\n                color.rgb += components.ambient * components.ambientColor;\n                color.rgb += components.specular * components.specularColor;\n                color.rgb += components.emissive;\n                color.a = components.opacity;\n                return color;\n              }\nvec4 getFinalColor(vec4 color) { return color; }\nvoid afterFragment() {}\n</code></pre>\n",
             "itemtype": "method",
             "name": "inspectHooks",
+            "beta": 1,
             "class": "p5.Shader",
             "module": "3D",
             "submodule": "Material"
         },
         {
             "file": "src/scripts/parsers/in/p5.js/src/webgl/p5.Shader.js",
-            "line": 277,
-            "description": "<p>Returns a new shader, based on the original, but with custom snippets\nof shader code replacing default behaviour.</p>\n<p>Each shader may let you override bits of its behavior. Each bit is called\na <em>hook.</em> A hook is either for the <em>vertex</em> shader, if it affects the\nposition of vertices, or in the <em>fragment</em> shader, if it affects the pixel\ncolor. You can inspect the different hooks available by calling\n<a href=\"#/p5.Shader/inspectHooks\"><code>yourShader.inspectHooks()</code></a>. You can\nalso read the reference for the default material, normal material, color, line, and point shaders to\nsee what hooks they have available.</p>\n<p><code>modify()</code> takes one parameter, <code>hooks</code>, an object with the hooks you want\nto override. Each key of the <code>hooks</code> object is the name\nof a hook, and the value is a string with the GLSL code for your hook. You\ncan also add a <code>declarations</code> key, where the value is a GLSL string declaring\n<a href=\"#/p5.Shader/setUniform\">uniform variables</a> and globals shared\nbetween hooks. To add declarations jsut in a vertex or fragment shader, add\n<code>vertexDeclarations</code> and <code>fragmentDeclarations</code> keys.</p>\n",
+            "line": 343,
+            "description": "<p>Returns a new shader, based on the original, but with custom snippets\nof shader code replacing default behaviour.</p>\n<p>Each shader may let you override bits of its behavior. Each bit is called\na <em>hook.</em> A hook is either for the <em>vertex</em> shader, if it affects the\nposition of vertices, or in the <em>fragment</em> shader, if it affects the pixel\ncolor. You can inspect the different hooks available by calling\n<a href=\"#/p5.Shader/inspectHooks\"><code>yourShader.inspectHooks()</code></a>. You can\nalso read the reference for the default material, normal material, color, line, and point shaders to\nsee what hooks they have available.</p>\n<p><code>modify()</code> takes one parameter, <code>hooks</code>, an object with the hooks you want\nto override. Each key of the <code>hooks</code> object is the name\nof a hook, and the value is a string with the GLSL code for your hook.</p>\n<p>If you supply functions that aren't existing hooks, they will get added at the start of\nthe shader as helper functions so that you can use them in your hooks.</p>\n<p>To add new <a href=\"#/p5.Shader/setUniform\">uniforms</a> to your shader, you can pass in a <code>uniforms</code> object containing\nthe type and name of the uniform as the key, and a default value or function returning\na default value as its value. These will be automatically set when the shader is set\nwith <code>shader(yourShader)</code>.</p>\n<p>You can also add a <code>declarations</code> key, where the value is a GLSL string declaring\ncustom uniform variables, globals, and functions shared\nbetween hooks. To add declarations just in a vertex or fragment shader, add\n<code>vertexDeclarations</code> and <code>fragmentDeclarations</code> keys.</p>\n",
             "itemtype": "method",
             "name": "modify",
+            "beta": 1,
             "params": [
                 {
                     "name": "hooks",
@@ -29914,7 +29920,8 @@
                 "type": "p5.Shader"
             },
             "example": [
-                "\n<div modernizr='webgl'>\n<code>\nlet myShader;\n\nfunction setup() {\n  createCanvas(200, 200, WEBGL);\n  myShader = materialShader().modify({\n    declarations: 'uniform float time;',\n    'vec3 getWorldPosition': `(vec3 pos) {\n      pos.y += 20. * sin(time * 0.001 + pos.x * 0.05);\n      return pos;\n    }`\n  });\n}\n\nfunction draw() {\n  background(255);\n  shader(myShader);\n  myShader.setUniform('time', millis());\n  lights();\n  noStroke();\n  fill('red');\n  sphere(50);\n}\n</code>\n</div>"
+                "\n<div modernizr='webgl'>\n<code>\nlet myShader;\n\nfunction setup() {\n  createCanvas(200, 200, WEBGL);\n  myShader = materialShader().modify({\n    uniforms: {\n      'float time': () => millis()\n    },\n    'vec3 getWorldPosition': `(vec3 pos) {\n      pos.y += 20. * sin(time * 0.001 + pos.x * 0.05);\n      return pos;\n    }`\n  });\n}\n\nfunction draw() {\n  background(255);\n  shader(myShader);\n  lights();\n  noStroke();\n  fill('red');\n  sphere(50);\n}\n</code>\n</div>",
+                "\n<div modernizr='webgl'>\n<code>\nlet myShader;\n\nfunction setup() {\n  createCanvas(200, 200, WEBGL);\n  myShader = materialShader().modify({\n    // Manually specifying a uniform\n    declarations: 'uniform float time;',\n    'vec3 getWorldPosition': `(vec3 pos) {\n      pos.y += 20. * sin(time * 0.001 + pos.x * 0.05);\n      return pos;\n    }`\n  });\n}\n\nfunction draw() {\n  background(255);\n  shader(myShader);\n  myShader.setUniform('time', millis());\n  lights();\n  noStroke();\n  fill('red');\n  sphere(50);\n}\n</code>\n</div>"
             ],
             "class": "p5.Shader",
             "module": "3D",
@@ -29922,7 +29929,7 @@
         },
         {
             "file": "src/scripts/parsers/in/p5.js/src/webgl/p5.Shader.js",
-            "line": 449,
+            "line": 577,
             "description": "<p>Copies the shader from one drawing context to another.</p>\n<p>Each <code>p5.Shader</code> object must be compiled by calling\n<a href=\"#/p5/shader\">shader()</a> before it can run. Compilation happens\nin a drawing context which is usually the main canvas or an instance of\n<a href=\"#/p5.Graphics\">p5.Graphics</a>. A shader can only be used in the\ncontext where it was compiled. The <code>copyToContext()</code> method compiles the\nshader again and copies it to another drawing context where it can be\nreused.</p>\n<p>The parameter, <code>context</code>, is the drawing context where the shader will be\nused. The shader can be copied to an instance of\n<a href=\"#/p5.Graphics\">p5.Graphics</a>, as in\n<code>myShader.copyToContext(pg)</code>. The shader can also be copied from a\n<a href=\"#/p5.Graphics\">p5.Graphics</a> object to the main canvas using\nthe <code>window</code> variable, as in <code>myShader.copyToContext(window)</code>.</p>\n<p>Note: A <a href=\"#/p5.Shader\">p5.Shader</a> object created with\n<a href=\"#/p5/createShader\">createShader()</a>,\n<a href=\"#/p5/createFilterShader\">createFilterShader()</a>, or\n<a href=\"#/p5/loadShader\">loadShader()</a>\ncan be used directly with a <a href=\"#/p5.Framebuffer\">p5.Framebuffer</a>\nobject created with\n<a href=\"#/p5/createFramebuffer\">createFramebuffer()</a>. Both objects\nhave the same context as the main canvas.</p>\n",
             "itemtype": "method",
             "name": "copyToContext",
@@ -29946,7 +29953,7 @@
         },
         {
             "file": "src/scripts/parsers/in/p5.js/src/webgl/p5.Shader.js",
-            "line": 865,
+            "line": 993,
             "description": "<p>Sets the shader’s uniform (global) variables.</p>\n<p>Shader programs run on the computer’s graphics processing unit (GPU).\nThey live in part of the computer’s memory that’s completely separate\nfrom the sketch that runs them. Uniforms are global variables within a\nshader program. They provide a way to pass values from a sketch running\non the CPU to a shader program running on the GPU.</p>\n<p>The first parameter, <code>uniformName</code>, is a string with the uniform’s name.\nFor the shader above, <code>uniformName</code> would be <code>'r'</code>.</p>\n<p>The second parameter, <code>data</code>, is the value that should be used to set the\nuniform. For example, calling <code>myShader.setUniform('r', 0.5)</code> would set\nthe <code>r</code> uniform in the shader above to <code>0.5</code>. data should match the\nuniform’s type. Numbers, strings, booleans, arrays, and many types of\nimages can all be passed to a shader with <code>setUniform()</code>.</p>\n",
             "itemtype": "method",
             "name": "setUniform",
@@ -30234,19 +30241,19 @@
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " src/scripts/parsers/in/p5.js/src/webgl/material.js:884"
+            "line": " src/scripts/parsers/in/p5.js/src/webgl/material.js:886"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " src/scripts/parsers/in/p5.js/src/webgl/material.js:1193"
+            "line": " src/scripts/parsers/in/p5.js/src/webgl/material.js:1197"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " src/scripts/parsers/in/p5.js/src/webgl/material.js:1286"
+            "line": " src/scripts/parsers/in/p5.js/src/webgl/material.js:1292"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " src/scripts/parsers/in/p5.js/src/webgl/material.js:1347"
+            "line": " src/scripts/parsers/in/p5.js/src/webgl/material.js:1355"
         },
         {
             "message": "unknown tag: alt",
@@ -30354,15 +30361,15 @@
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " src/scripts/parsers/in/p5.js/src/webgl/p5.Shader.js:219"
+            "line": " src/scripts/parsers/in/p5.js/src/webgl/p5.Shader.js:233"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " src/scripts/parsers/in/p5.js/src/webgl/p5.Shader.js:277"
+            "line": " src/scripts/parsers/in/p5.js/src/webgl/p5.Shader.js:343"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " src/scripts/parsers/in/p5.js/src/webgl/p5.Shader.js:449"
+            "line": " src/scripts/parsers/in/p5.js/src/webgl/p5.Shader.js:577"
         },
         {
             "message": "replacing incorrect tag: function with method",
@@ -31014,11 +31021,11 @@
         },
         {
             "message": "Missing item type",
-            "line": " src/scripts/parsers/in/p5.js/src/webgl/material.js:3179"
+            "line": " src/scripts/parsers/in/p5.js/src/webgl/material.js:3185"
         },
         {
             "message": "Missing item type",
-            "line": " src/scripts/parsers/in/p5.js/src/webgl/material.js:3219"
+            "line": " src/scripts/parsers/in/p5.js/src/webgl/material.js:3225"
         },
         {
             "message": "Missing item type\nAn internal class to store data that will be sent to a p5.RenderBuffer.\nThose need to eventually go into a Float32Array, so this class provides a\nvariable-length array container backed by a Float32Array so that it can be\nsent to the GPU without allocating a new array each frame.\n\nLike a C++ vector, its fixed-length Float32Array backing its contents will\ndouble in size when it goes over its capacity.",
@@ -31234,11 +31241,15 @@
         },
         {
             "message": "Missing item type\nShaders are written in <a href=\"https://developer.mozilla.org/en-US/docs/Games/Techniques/3D_on_the_web/GLSL_Shaders\">GLSL</a>, but\nthere are different versions of GLSL that it might be written in.\n\nCalling this method on a `p5.Shader` will return the GLSL version it uses, either `100 es` or `300 es`.\nWebGL 1 shaders will only use `100 es`, and WebGL 2 shaders may use either.",
-            "line": " src/scripts/parsers/in/p5.js/src/webgl/p5.Shader.js:219"
+            "line": " src/scripts/parsers/in/p5.js/src/webgl/p5.Shader.js:233"
         },
         {
             "message": "Missing item type",
-            "line": " src/scripts/parsers/in/p5.js/src/webgl/p5.Shader.js:639"
+            "line": " src/scripts/parsers/in/p5.js/src/webgl/p5.Shader.js:557"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src/scripts/parsers/in/p5.js/src/webgl/p5.Shader.js:767"
         }
     ],
     "consts": {

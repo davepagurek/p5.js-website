@@ -7,7 +7,7 @@ description: >
   <p>Get the shader used when drawing the strokes of shapes.</p>
 
   <p>You can call <a
-  href="/p5.js-website/reference/p5.Shader/modify"><code>strokeShader().modify()</code></a>
+  href="/reference/p5.Shader/modify/"><code>strokeShader().modify()</code></a>
 
   and change any of the following hooks:</p>
 
@@ -211,7 +211,7 @@ description: >
   hooks and
 
   their default implementations.</p>
-line: 1347
+line: 1355
 isConstructor: false
 itemtype: method
 example:
@@ -258,10 +258,10 @@ example:
     function setup() {
       createCanvas(200, 200, WEBGL);
       myShader = strokeShader().modify({
-        declarations: `
-          uniform float time;
-          vec3 myPosition;
-        `,
+        uniforms: {
+          'float time': () => millis()
+        },
+        declarations: 'vec3 myPosition;',
         'vec3 getWorldPosition': `(vec3 pos) {
           myPosition = pos;
           return pos;
@@ -304,13 +304,11 @@ example:
     function setup() {
       createCanvas(200, 200, WEBGL);
       myShader = strokeShader().modify({
-        declarations: `
-          float random(vec2 p) {
-            vec3 p3  = fract(vec3(p.xyx) * .1031);
-            p3 += dot(p3, p3.yzx + 33.33);
-            return fract((p3.x + p3.y) * p3.z);
-          }
-        `,
+        'float random': `(vec2 p) {
+          vec3 p3  = fract(vec3(p.xyx) * .1031);
+          p3 += dot(p3, p3.yzx + 33.33);
+          return fract((p3.x + p3.y) * p3.z);
+        }`,
         'Inputs getPixelInputs': `(Inputs inputs) {
           // Replace alpha in the color with dithering by
           // randomly setting pixel colors to 0 based on opacity
@@ -325,7 +323,6 @@ example:
     function draw() {
       background(255);
       shader(myShader);
-      myShader.setUniform('time', millis());
       strokeWeight(10);
       beginShape();
       for (let i = 0; i <= 50; i++) {
@@ -349,6 +346,7 @@ return:
   description: The stroke shader
   type: p5.Shader
 chainable: false
+beta: true
 ---
 
 
